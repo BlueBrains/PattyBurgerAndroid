@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    private static String LOG_TAG = "MainActivity";
+    private static String LOG_TAG = MainActivity.class.getName();
     private List<Restaurant> mPhotoList = new ArrayList<Restaurant>();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
@@ -63,7 +63,8 @@ public class MainActivity extends ActionBarActivity {
         public class ProccessData extends DownloadJsonData{
             protected void onPostExecute(String webData){
                 super.onPostExecute(webData);
-                BurgerRecyclerViewAdapter burgerRecyclerViewAdapter = new BurgerRecyclerViewAdapter(MainActivity.this,getmPhotos());
+                BurgerRecyclerViewAdapter burgerRecyclerViewAdapter =
+                        new BurgerRecyclerViewAdapter(MainActivity.this,getmRestaurants());
                 mRecyclerView.setAdapter(burgerRecyclerViewAdapter);
             }
 

@@ -10,15 +10,17 @@ public class Restaurant {
     private String mImage;
     private String mLink;
     private String mDescription;
+    private int mID;
     //private List<Meal> mMeals;
 
-    public Restaurant(String mName, String mLocation, String mType, String mImage, String mLink, String mDescription) {
+    public Restaurant(String mName, String mLocation, String mType, String mImage, String mLink, String mDescription, int mID) {
         this.mName = mName;
         this.mLocation = mLocation;
         this.mType = mType;
         this.mImage = mImage;
         this.mLink = mLink;
         this.mDescription = mDescription;
+        this.mID = mID;
     }
 
     public String getmName() {
@@ -67,5 +69,13 @@ public class Restaurant {
 
     public void setmDescription(String mDescription) {
         this.mDescription = mDescription;
+    }
+
+    public int getmID() {
+        return mID;
+    }
+
+    public void setmID(int mID) {
+        this.mID = mID;
     }
 }

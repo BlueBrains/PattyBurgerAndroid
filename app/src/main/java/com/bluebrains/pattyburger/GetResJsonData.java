@@ -32,16 +32,16 @@ public class GetResJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(){
-        final String BURGER_API_BASE_URL = "http://10.0.3.2:81/burger_ownercp/res/get_res";
+        final String BURGER_API_BASE_URL = "http://10.0.3.2/burger_ownercp/res/get_res";
         final String FORMAT_PRAM = "format";
 
-        mDestinationUri = Uri.parse(BURGER_API_BASE_URL);//.buildUpon()
-                //.appendQueryParameter(FORMAT_PRAM, "json")
-                //.build();
+        mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
+                .appendQueryParameter(FORMAT_PRAM, "json")
+                .build();
         return mDestinationUri != null;
     }
 
-    public List<Restaurant> getmRestaurantss() {
+    public List<Restaurant> getmRestaurants() {
         return mRestaurants;
     }
 
@@ -60,7 +60,7 @@ public class GetResJsonData extends GetRowData{
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,null,null,null,null,null);
+                Restaurant resObject = new Restaurant(name,null,null,null,null,null,0);
 
                 this.mRestaurants.add(resObject);
             }

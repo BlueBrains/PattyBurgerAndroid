@@ -2,16 +2,29 @@ package com.bluebrains.pattyburger;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class RestaurantMeals extends ActionBarActivity {
+
+    private static String LOG_TAG = RestaurantMeals.class.getName();
+    private List<Meal> mMealList = new ArrayList<Meal>();
+    private RecyclerView mRecyclerView;
+    private MealRecyclerViewAdapter mealRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_meals);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        int id = getIntent().getIntExtra(BurgerRecyclerViewAdapter.RES_ID,-1);
+        ProccessMeals proccessMeals = new ProccessMeals(id);
+        proccessMeals.execute();
     }
 
 
@@ -35,5 +48,26 @@ public class RestaurantMeals extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class ProccessMeals extends GetMealJsonData {
+
+        public ProccessMeals(int id) {
+            super(id);
+        }
+
+        public void execute(){
+            ProccessData proccessData = new ProccessData();
+            proccessData.execute();
+        }
+
+        public class ProccessData extends DownloadJsonData{
+            protected void onPostExecute(String webData){
+                super.onPostExecute(webData);
+                MealRecyclerViewAdapter mealRecyclerViewAdapter = new MealRecyclerViewAdapter(RestaurantMeals.this,getmMeals());
+                mRecyclerView.setAdapter(mealRecyclerViewAdapter);
+            }
+
+        }
     }
 }
