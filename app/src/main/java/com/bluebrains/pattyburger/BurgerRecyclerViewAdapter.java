@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -36,6 +37,8 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
                 .placeholder(R.drawable.placeholder)
                 .into(resViewHolder.thumbnail);
         resViewHolder.name.setText(resItem.getmName());
+        resViewHolder.description.setText(resItem.getmDescription());
+        resViewHolder.rating.setRating(5);
     }
 
     @Override
@@ -53,12 +56,15 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
     class RestaurantViewHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
         protected ImageView thumbnail;
         protected TextView name;
-
+        protected  TextView description;
+        protected RatingBar rating;
         public RestaurantViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             this.thumbnail = (ImageView)view.findViewById(R.id.thumbnail);
             this.name = (TextView)view.findViewById(R.id.name);
+            this.description = (TextView)view.findViewById(R.id.description);
+            this.rating=(RatingBar)view.findViewById(R.id.ratingBar);
         }
 
         @Override

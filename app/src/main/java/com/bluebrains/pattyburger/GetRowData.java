@@ -3,12 +3,22 @@ package com.bluebrains.pattyburger;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Molham on 3/30/2015.
@@ -105,6 +115,31 @@ public class GetRowData {
 
                     return buffer.toString();
                 }else {
+                    urlConnection.setReadTimeout(10000);
+                    urlConnection.setConnectTimeout(15000);
+                    //conn.setRequestMethod("POST");
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+
+                    List<NameValuePair> my_params = new ArrayList<NameValuePair>();
+                    for(int i=1;i<=params.length;i+=2)
+                    {
+                        my_params.add(new BasicNameValuePair(params[i],params[i+1]));
+                    }
+                    /*
+                    my_params.add(new BasicNameValuePair("firstParam", paramValue1));
+                    my_params.add(new BasicNameValuePair("secondParam", paramValue2));
+                    my_params.add(new BasicNameValuePair("thirdParam", paramValue3));*/
+
+                    OutputStream os = urlConnection.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getQuery(my_params));
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    urlConnection.connect();
                     return null;
                 }
             }catch(IOException e){
@@ -122,6 +157,25 @@ public class GetRowData {
                     }
                 }
             }
+        }
+        private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException
+        {
+            StringBuilder result = new StringBuilder();
+            boolean first = true;
+
+            for (NameValuePair pair : params)
+            {
+                if (first)
+                    first = false;
+                else
+                    result.append("&");
+
+                result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+            }
+
+            return result.toString();
         }
     }
 }

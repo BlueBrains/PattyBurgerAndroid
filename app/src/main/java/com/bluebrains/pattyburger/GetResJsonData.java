@@ -53,14 +53,19 @@ public class GetResJsonData extends GetRowData{
         final String RES_ITEMS = "restaurant";
         final String RES_NAME = "res_name";
         final String RES_LOGO_URL = "res_logo";
+        final String TAG_res_address = "res_address";
+        final String TAG_res_description = "description";
+
         try {
             JSONObject jsonData = new JSONObject(getmData());
             JSONArray itemsArray = jsonData.getJSONArray(RES_ITEMS);
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
+                String address=jsonRes.getString(TAG_res_address);
+                String description =jsonRes.getString(TAG_res_description);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,null,null,null,null,null);
+                Restaurant resObject = new Restaurant(name,address,null,null,null,description);
 
                 this.mRestaurants.add(resObject);
             }

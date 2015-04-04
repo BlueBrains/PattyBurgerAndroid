@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="2dp">
+    android:padding="2dp"
+    android:weightSum="1">
 
     <ImageView android:id="@+id/thumbnail"
         android:layout_gravity="center_horizontal"
@@ -13,11 +14,36 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/placeholder"/>
 
-    <TextView android:id="@+id/name"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:maxLines="3"/>
+        android:layout_height="match_parent"
+        android:layout_weight="0.47">
+
+        <TextView android:id="@+id/name"
+            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_marginLeft="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:maxLines="3"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:numStars="5"
+            android:layout_gravity="left"
+            android:id="@+id/ratingBar" />
+
+        <TextView android:id="@+id/description"
+            android:layout_height="match_parent"
+            android:layout_width="155dp"
+            android:layout_marginLeft="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:maxLines="6" />
+
+    </LinearLayout>
 </LinearLayout>
