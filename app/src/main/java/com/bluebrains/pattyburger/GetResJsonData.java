@@ -32,16 +32,16 @@ public class GetResJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(){
-        final String BURGER_API_BASE_URL = "http://10.0.3.2:81/burger_ownercp/res/get_res";
+        final String BURGER_API_BASE_URL = "http://10.0.3.2/burger_ownercp/res/get_res";
         final String FORMAT_PRAM = "format";
 
-        mDestinationUri = Uri.parse(BURGER_API_BASE_URL);//.buildUpon()
-                //.appendQueryParameter(FORMAT_PRAM, "json")
-                //.build();
+        mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
+                .appendQueryParameter(FORMAT_PRAM, "json")
+                .build();
         return mDestinationUri != null;
     }
 
-    public List<Restaurant> getmRestaurantss() {
+    public List<Restaurant> getmRestaurants() {
         return mRestaurants;
     }
 
@@ -64,8 +64,14 @@ public class GetResJsonData extends GetRowData{
                 String name = jsonRes.getString(RES_NAME);
                 String address=jsonRes.getString(TAG_res_address);
                 String description =jsonRes.getString(TAG_res_description);
+                int id=jsonRes.getInt("id");
+                String logo="http://10.0.3.2/burger_ownercp/uploads/"+id+"/"+jsonRes.getString("res_logo");
+                int people_number=jsonRes.getInt("people_number");
+                double rating=jsonRes.getDouble("rating");
+                double res_rating=people_number<1?0:(rating/people_number);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,address,null,null,null,description);
+                Restaurant resObject = new Restaurant(name,address,null,logo,null,description,id,res_rating);
+
 
                 this.mRestaurants.add(resObject);
             }

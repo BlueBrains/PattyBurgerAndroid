@@ -18,7 +18,7 @@ public class GetMealJsonData extends GetRowData{
         super(null,GET);
 
     }
-    /*
+
     private String LOG_TAG = GetMealJsonData.class.getName();
     private List<Meal> mMeals;
     private Uri mDestinationUri;
@@ -37,12 +37,13 @@ public class GetMealJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(int id){
-        final String BURGER_API_BASE_URL = "http://10.0.3.2:81/burger_ownercp/res/get_res";
+        final String BURGER_API_BASE_URL = "http://10.0.3.2/burger_ownercp/res/get_res";
         final String FORMAT_PRAM = "format";
         final String RES_ID_PARAM = "res_id";
 
         mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
         .appendQueryParameter(RES_ID_PARAM, Integer.toString(id))
+        .appendQueryParameter(FORMAT_PRAM, "json")
         .build();
 
         return mDestinationUri != null;
@@ -50,7 +51,7 @@ public class GetMealJsonData extends GetRowData{
 
     }
 
-    public List<Restaurant> getmMeals() {
+    public List<Meal> getmMeals() {
         return mMeals;
     }
 
@@ -66,12 +67,12 @@ public class GetMealJsonData extends GetRowData{
             JSONObject jsonData = new JSONObject(getmData());
             JSONArray itemsArray = jsonData.getJSONArray(RES_ITEMS);
             for (int i = 0; i<itemsArray.length();i++){
-                JSONObject jsonRes = itemsArray.getJSONObject(i);
-                String name = jsonRes.getString(MEAL_NAME);
-                //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Meal resObject = new Meal(name,null);
+                JSONObject jsonMeal = itemsArray.getJSONObject(i);
+                String name = jsonMeal.getString(MEAL_NAME);
+                //String logoUrl = jsonMeal.getString(RES_LOGO_URL);
+                Meal mealObject = new Meal(name,null,0,null,null);
 
-                this.mMeals.add(resObject);
+                this.mMeals.add(mealObject);
             }
             for(Meal singleMeal : mMeals){
                 Log.v(LOG_TAG, singleMeal.toString());
@@ -94,5 +95,5 @@ public class GetMealJsonData extends GetRowData{
             String [] par = {mDestinationUri.toString()};
             return super.doInBackground(par);
         }
-    }*/
+    }
 }

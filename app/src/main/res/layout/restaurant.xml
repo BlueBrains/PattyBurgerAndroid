@@ -16,9 +16,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0.47">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView android:id="@+id/name"
             android:layout_height="wrap_content"
@@ -39,7 +38,7 @@
 
         <TextView android:id="@+id/description"
             android:layout_height="match_parent"
-            android:layout_width="155dp"
+            android:layout_width="256dp"
             android:layout_marginLeft="8dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
