@@ -32,7 +32,7 @@ public class GetResJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(){
-        final String BURGER_API_BASE_URL = "http://10.0.3.2/burger_ownercp/res/get_res";
+        final String BURGER_API_BASE_URL = "http://burger.remmaz.com/index.php/restaurants/ress";
         final String FORMAT_PRAM = "format";
 
         mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
@@ -50,17 +50,21 @@ public class GetResJsonData extends GetRowData{
             Log.e(LOG_TAG,"Error downloading row file");
             return;
         }
-        final String RES_ITEMS = "restaurant";
+        final String RES_ITEMS = "restaurants";
         final String RES_NAME = "res_name";
+        final String RES_DESCRIPTION = "res_logo";
         final String RES_LOGO_URL = "res_logo";
+        final String RES_ID = "id";
         try {
             JSONObject jsonData = new JSONObject(getmData());
             JSONArray itemsArray = jsonData.getJSONArray(RES_ITEMS);
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
+                String description = jsonRes.getString(RES_DESCRIPTION);
+                int id = jsonRes.getInt(RES_ID);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,null,null,null,null,null,0);
+                Restaurant resObject = new Restaurant(name,null,null,null,null,description,id);
 
                 this.mRestaurants.add(resObject);
             }

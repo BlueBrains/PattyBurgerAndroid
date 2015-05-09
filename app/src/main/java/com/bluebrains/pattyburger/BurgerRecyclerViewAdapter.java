@@ -69,7 +69,7 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
         @Override
         public void onClick(View v) {
             Log.d("HI", "Hi there! " + mResList.get(getPosition()).getmName());
-            Intent intent = new Intent(mContext,RestaurantMeals.class);
+            Intent intent = new Intent(mContext,RestaurantMenu.class);
             intent.putExtra(RES_ID,mResList.get(getPosition()).getmID());
             mContext.startActivity(intent);
         }

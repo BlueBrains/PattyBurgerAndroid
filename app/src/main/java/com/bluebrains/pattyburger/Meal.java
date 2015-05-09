@@ -7,13 +7,15 @@ public class Meal {
     private String mName;
     private String mType;
     private double mPrice;
+    private double mTime;
     private String mDescription;
     private String mImage;
 
-    public Meal(String mName, String mType, double mPrice, String mDescription, String mImage) {
+    public Meal(String mName, String mType, double mPrice, double mTime, String mDescription, String mImage) {
         this.mName = mName;
         this.mType = mType;
         this.mPrice = mPrice;
+        this.mTime = mTime;
         this.mDescription = mDescription;
         this.mImage = mImage;
     }
