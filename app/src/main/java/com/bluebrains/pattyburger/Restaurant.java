@@ -11,9 +11,19 @@ public class Restaurant {
     private String mLink;
     private String mDescription;
     private int mID;
+    private double mRating;
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(float mRating) {
+        this.mRating = mRating;
+    }
+
+
     //private List<Meal> mMeals;
 
-    public Restaurant(String mName, String mLocation, String mType, String mImage, String mLink, String mDescription, int mID) {
+    public Restaurant(String mName, String mLocation, String mType, String mImage, String mLink, String mDescription, int mID,double mRating) {
         this.mName = mName;
         this.mLocation = mLocation;
         this.mType = mType;
@@ -21,6 +31,7 @@ public class Restaurant {
         this.mLink = mLink;
         this.mDescription = mDescription;
         this.mID = mID;
+        this.mRating=mRating;
     }
 
     public String getmName() {

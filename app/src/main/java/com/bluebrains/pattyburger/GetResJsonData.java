@@ -55,16 +55,29 @@ public class GetResJsonData extends GetRowData{
         final String RES_DESCRIPTION = "res_logo";
         final String RES_LOGO_URL = "res_logo";
         final String RES_ID = "id";
+        final String TAG_ADDRESS = "res_address";
+
+
+
         try {
             JSONObject jsonData = new JSONObject(getmData());
             JSONArray itemsArray = jsonData.getJSONArray(RES_ITEMS);
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
+                String address=jsonRes.getString(TAG_ADDRESS);
                 String description = jsonRes.getString(RES_DESCRIPTION);
                 int id = jsonRes.getInt(RES_ID);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,null,null,null,null,description,id);
+                Restaurant resObject = new Restaurant(name,address,null,null,null,description,id,0);
+
+                //String logo="http://10.0.3.2/burger_ownercp/uploads/"+id+"/"+jsonRes.getString("res_logo");
+//                int people_number=jsonRes.getInt("people_number");
+//                double rating=jsonRes.getDouble("rating");
+//                double res_rating=people_number<1?0:(rating/people_number);
+                //String logoUrl = jsonRes.getString(RES_LOGO_URL);
+                //Restaurant resObject = new Restaurant(name,address,null,logo,null,description,id,res_rating);
+
 
                 this.mRestaurants.add(resObject);
             }

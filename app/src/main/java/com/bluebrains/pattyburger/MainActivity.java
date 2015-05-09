@@ -1,5 +1,6 @@
 package com.bluebrains.pattyburger;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     private List<Restaurant> mPhotoList = new ArrayList<Restaurant>();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
-
+    private ProgressDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +62,23 @@ public class MainActivity extends ActionBarActivity {
         }
 
         public class ProccessData extends DownloadJsonData{
+            protected void onPreExecute() {
+                super.onPreExecute();
+                // Showing progress dialog
+                pDialog = new ProgressDialog(MainActivity.this);
+                pDialog.setMessage("Please wait...");
+                pDialog.setCancelable(false);
+                pDialog.show();
+
+            }
             protected void onPostExecute(String webData){
                 super.onPostExecute(webData);
+                if (pDialog.isShowing())
+                    pDialog.dismiss();
                 BurgerRecyclerViewAdapter burgerRecyclerViewAdapter =
                         new BurgerRecyclerViewAdapter(MainActivity.this,getmRestaurants());
                 mRecyclerView.setAdapter(burgerRecyclerViewAdapter);
+
             }
 
         }

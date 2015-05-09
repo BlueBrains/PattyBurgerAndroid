@@ -14,6 +14,11 @@ import java.util.List;
  * Created by Molham on 3/31/2015.
  */
 public class GetMealJsonData extends GetRowData{
+    public GetMealJsonData(){
+        super(null,GET);
+
+    }
+
     private String LOG_TAG = GetMealJsonData.class.getName();
     private List<Meal> mMeals;
     private Uri mDestinationUri;
