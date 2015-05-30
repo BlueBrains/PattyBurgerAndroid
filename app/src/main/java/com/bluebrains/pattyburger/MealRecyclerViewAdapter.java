@@ -1,6 +1,7 @@
 package com.bluebrains.pattyburger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,6 +65,9 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
         @Override
         public void onClick(View v) {
             Log.d("HI", "Hi there! " + mMealList.get(getPosition()).getmName());
+            Intent intent = new Intent(mContext,MealDescription.class);
+            intent.putExtra(RestaurantTab.Item, mMealList.get(getPosition()));
+            mContext.startActivity(intent);
         }
     }
 
