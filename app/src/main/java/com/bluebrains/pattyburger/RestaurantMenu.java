@@ -1,5 +1,6 @@
 package com.bluebrains.pattyburger;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -50,7 +51,6 @@ public class RestaurantMenu extends ActionBarActivity implements RestaurantTab.O
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -68,6 +68,9 @@ public class RestaurantMenu extends ActionBarActivity implements RestaurantTab.O
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if (id == R.id.action_cart) {
+            Intent intent = new Intent(RestaurantMenu.this, CartList.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

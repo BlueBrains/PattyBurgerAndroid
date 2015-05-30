@@ -28,12 +28,10 @@ public class RestaurantTab extends Fragment {
 
     public static final String ARG_PARAM1 = "restaurant_id";
     public static final String ARG_PARAM2 = "restaurant_tabs_number";
-
+    public static final String Item = "restaurant_tab_item";
     private int mRestaurantId;
     private int mRestaurantTabNum;
-
     private OnFragmentInteractionListener mListener;
-
     private com.bluebrains.common.view.SlidingTabLayout mSlidingTabLayout;
 
     /**
@@ -66,7 +64,6 @@ public class RestaurantTab extends Fragment {
 
     public RestaurantTab() {
         // Required empty public constructor
-
     }
 
     @Override
@@ -227,7 +224,7 @@ public class RestaurantTab extends Fragment {
         public class ProccessData extends DownloadJsonData{
             protected void onPostExecute(String webData){
                 super.onPostExecute(webData);
-                MealRecyclerViewAdapter mealRecyclerViewAdapter = new MealRecyclerViewAdapter(getActivity().getApplicationContext(),getmMeals());
+                MealRecyclerViewAdapter mealRecyclerViewAdapter = new MealRecyclerViewAdapter(getActivity(),getmMeals());
                 mRecyclerViews.get(poistion).setAdapter(mealRecyclerViewAdapter);
             }
 

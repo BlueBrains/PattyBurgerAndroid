@@ -1,6 +1,7 @@
 package com.bluebrains.pattyburger;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,16 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class MainActivity extends ActionBarActivity {
     private static String LOG_TAG = MainActivity.class.getName();
-    private List<Restaurant> mPhotoList = new ArrayList<Restaurant>();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
     private ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +43,9 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if (id == R.id.action_cart) {
+            Intent intent = new Intent(MainActivity.this, CartList.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -75,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
                 super.onPostExecute(webData);
                 if (pDialog.isShowing())
                     pDialog.dismiss();
-                BurgerRecyclerViewAdapter burgerRecyclerViewAdapter =
+                burgerRecyclerViewAdapter =
                         new BurgerRecyclerViewAdapter(MainActivity.this,getmRestaurants());
                 mRecyclerView.setAdapter(burgerRecyclerViewAdapter);
 
