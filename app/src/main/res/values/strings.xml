@@ -3,27 +3,60 @@
 
     <string name="app_name">Patty Burger</string>
     <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
     <string name="action_cart">Cart</string>
-    <string name="title_activity_restaurant_meals">RestaurantMeals</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_meal_description">MealDescription</string>
+    <string name="action_search">Search</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="title_restaurant_meals">RestaurantMeals</string>
+    <string name="title_meal_description">MealDescription</string>
+    <string name="title_cart_list">CartList</string>
+
     <string name="meal_image_desc">Meal image</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="meal_name">Meal name</string>
     <string name="meal_description">Meal description</string>
     <string name="meal_price">Price</string>
+<<<<<<< HEAD
     <string name="title_activity_cart_list">CartList</string>
     <string name="hint_phone_number">Phone Number</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
     <!-- <string name="btn_login">LOGIN</string> -->
+=======
+
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">fullName</string>
+    <!--<string name="btn_login">LOGIN</string>-->
+>>>>>>> 248c39c0dfb5718d44ab5724fc5697427f840e34
     <string name="btn_register">REGISTER</string>
     <!-- <string name="btn_link_to_register">Not a member? Sign up now.</string> -->
     <!-- <string name="btn_link_to_login">Already registred! Login Me.</string> -->
     <string name="welcome">Welcome</string>
+<<<<<<< HEAD
     <!-- <string name="btn_logout">LOGOUT</string> -->
     <string name="name">Fullname</string>
     <string name="title_activity_location">LocationActivity</string>
+=======
+    <!--<string name="btn_logout">LOGOUT</string>-->
+    <string name="name">fullName</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_cart">Cart</string>
+    <string name="nav_item_myOrders">My Orders</string>
+    <string name="nav_item_favorite">Favorite</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_cart</item>
+        <item>@string/nav_item_myOrders</item>
+        <item>@string/nav_item_favorite</item>
+    </string-array>
+>>>>>>> 248c39c0dfb5718d44ab5724fc5697427f840e34
 
 </resources>
