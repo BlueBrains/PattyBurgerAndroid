@@ -79,7 +79,7 @@ public class FragmentDrawer extends Fragment {
     }
 
     public static List<NavDrawerItem> getData() {
-        List<NavDrawerItem> data = new ArrayList<>();
+        List<NavDrawerItem> data = new ArrayList<NavDrawerItem>();
 
 
         // preparing navigation drawer items

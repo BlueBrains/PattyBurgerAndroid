@@ -1,6 +1,7 @@
 package com.bluebrains.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -9,11 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bluebrains.Activity.FragmentMap;
 import com.bluebrains.Activity.FragmentRestaurantTab;
+import com.bluebrains.Activity.FragmentRestaurants;
+import com.bluebrains.googleplacesandmap.LocationActivity;
 import com.bluebrains.model.Restaurant;
 import com.bluebrains.pattyburger.R;
 import com.squareup.picasso.Picasso;
@@ -67,6 +72,10 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
         protected TextView name;
         protected  TextView description;
         protected RatingBar rating;
+        protected double lat;
+        protected double lng;
+        protected Button MapButton;
+
         public RestaurantViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
@@ -74,6 +83,28 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
             this.name = (TextView)view.findViewById(R.id.name);
             this.description = (TextView)view.findViewById(R.id.description);
             this.rating=(RatingBar)view.findViewById(R.id.ratingBar);
+            this.MapButton=(Button)view.findViewById(R.id.map);
+            MapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle args = new Bundle();
+                    int restaurantId = mResList.get(getPosition()).getmID();
+                    double lat=mResList.get(getPosition()).getmLat();
+                    double lng=mResList.get(getPosition()).getmLng();
+                    int restaurantTabNum = 2;
+                    args.putDouble(FragmentMap.LAT, lat);
+                    args.putDouble(FragmentMap.LNG, lng);
+                    if (mContext instanceof FragmentActivity) {
+                        // We can get the fragment manager
+                        FragmentActivity activity = (FragmentActivity)(mContext);
+                        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                        FragmentMap fragment = new FragmentMap();
+                        fragment.setArguments(args);
+                        transaction.replace(R.id.container_body, fragment);
+                        transaction.commit();
+                    }
+                }
+            });
         }
 
         @Override

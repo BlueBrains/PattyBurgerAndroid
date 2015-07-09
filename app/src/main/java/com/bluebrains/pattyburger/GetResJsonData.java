@@ -58,8 +58,9 @@ public class GetResJsonData extends GetRowData{
         final String RES_LOGO_URL = "res_logo";
         final String RES_ID = "id";
         final String TAG_ADDRESS = "res_address";
-
-
+        final String LAT="lat";
+        final String LNG="lng";
+        final String RATIO="";
 
         try {
             JSONObject jsonData = new JSONObject(getmData());
@@ -69,9 +70,14 @@ public class GetResJsonData extends GetRowData{
                 String name = jsonRes.getString(RES_NAME);
                 String address=jsonRes.getString(TAG_ADDRESS);
                 String description = jsonRes.getString(RES_DESCRIPTION);
+                double lat=jsonRes.getDouble(LAT);
+                double lng=jsonRes.getDouble(LNG);
                 int id = jsonRes.getInt(RES_ID);
+                double rating=jsonRes.getDouble("rating");
+                int people_number=jsonRes.getInt("people_number");
+                double res_rating=people_number<1?0:(rating/people_number);
                 //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,address,null,null,null,description,id,0);
+                Restaurant resObject = new Restaurant(name,address,null,null,null,description,id,rating,lat,lng);
 
                 //String logo="http://10.0.3.2/burger_ownercp/uploads/"+id+"/"+jsonRes.getString("res_logo");
 //                int people_number=jsonRes.getInt("people_number");

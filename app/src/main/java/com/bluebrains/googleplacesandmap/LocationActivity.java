@@ -70,7 +70,7 @@ public class LocationActivity extends FragmentActivity implements
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        setContentView(R.layout.activity_location_google_map);
+        setContentView(R.layout.activity_location);
         SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         googleMap = fm.getMap();

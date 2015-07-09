@@ -12,6 +12,25 @@ public class Restaurant {
     private String mDescription;
     private int mID;
     private double mRating;
+    private double mLat;
+    private double mLng;
+    public double getmLat() {
+        return mLat;
+    }
+
+    public void setmLat(double mLat) {
+        this.mLat = mLat;
+    }
+
+    public double getmLng() {
+        return mLng;
+    }
+
+    public void setmLng(double mLng) {
+        this.mLng = mLng;
+    }
+
+
     public double getmRating() {
         return mRating;
     }
@@ -33,7 +52,18 @@ public class Restaurant {
         this.mID = mID;
         this.mRating=mRating;
     }
-
+    public Restaurant(String mName, String mLocation, String mType, String mImage, String mLink, String mDescription, int mID,double mRating,double mLat,double mLng) {
+        this.mName = mName;
+        this.mLocation = mLocation;
+        this.mType = mType;
+        this.mImage = mImage;
+        this.mLink = mLink;
+        this.mDescription = mDescription;
+        this.mID = mID;
+        this.mRating=mRating;
+        this.mLat=mLat;
+        this.mLng=mLng;
+    }
     public String getmName() {
         return mName;
     }
