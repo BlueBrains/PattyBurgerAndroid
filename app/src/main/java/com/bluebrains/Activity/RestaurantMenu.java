@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bluebrains.pattyburger.BurgerRecyclerViewAdapter;
+import com.bluebrains.pattyburger.CartList;
+import com.bluebrains.pattyburger.R;
+import com.bluebrains.pattyburger.RestaurantTab;
 
-public class RestaurantMenu extends ActionBarActivity implements RestaurantTab.OnFragmentInteractionListener{
+
+public class RestaurantMenu extends ActionBarActivity implements RestaurantTab.OnFragmentInteractionListener {
 
     @Override
     public void onFragmentInteraction(Uri uri) {

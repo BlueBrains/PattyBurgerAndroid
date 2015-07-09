@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bluebrains.pattyburger.CartList;
+import com.bluebrains.pattyburger.Controller;
+import com.bluebrains.pattyburger.Meal;
+import com.bluebrains.pattyburger.R;
+import com.bluebrains.pattyburger.RestaurantTab;
 import com.squareup.picasso.Picasso;
 
 

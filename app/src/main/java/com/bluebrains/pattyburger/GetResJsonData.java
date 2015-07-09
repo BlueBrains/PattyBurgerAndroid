@@ -3,6 +3,8 @@ package com.bluebrains.pattyburger;
 import android.net.Uri;
 import android.util.Log;
 
+import com.bluebrains.model.Restaurant;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.app;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -7,6 +7,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.bluebrains.helper.LruBitmapCache;
+import com.bluebrains.helper.ParseUtils;
+import com.bluebrains.model.ModelCart;
 
 /**
  * Created by Molham on 5/16/2015.
@@ -15,7 +18,7 @@ public class Controller extends Application {
 
     public static final String TAG = Controller.class.getSimpleName();
 
-    private  ModelCart myCart = new ModelCart();
+    private ModelCart myCart = new ModelCart();
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private static Controller mInstance;
@@ -24,6 +27,8 @@ public class Controller extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        // register with parse
+        ParseUtils.registerParse(this);
     }
 
     public static synchronized Controller getInstance() {
@@ -64,12 +69,8 @@ public class Controller extends Application {
         }
     }
 
-
-
     public ModelCart getModelCart() {
-
         return myCart;
-
     }
 
 }

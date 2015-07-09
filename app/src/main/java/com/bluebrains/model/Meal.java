@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.model;
 
 /**
  * Created by Molham on 3/30/2015.

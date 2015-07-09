@@ -1,4 +1,4 @@
-package com.bluebrains.pattyburger;
+package com.bluebrains.model;
 
 import java.util.ArrayList;
 
