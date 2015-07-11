@@ -18,7 +18,7 @@ import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
 import com.bluebrains.pattyburger.R;
 
 
-public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener, FragmentDrawer.OnFragmentInteractionListener, FragmentRestaurants.OnFragmentInteractionListener, FragmentRestaurantTab.OnFragmentInteractionListener, FragmentMeal.OnFragmentInteractionListener, FragmentCart.OnFragmentInteractionListener{
+public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener, FragmentDrawer.OnFragmentInteractionListener, FragmentRestaurants.OnFragmentInteractionListener, FragmentRestaurantTab.OnFragmentInteractionListener, FragmentMeal.OnFragmentInteractionListener, FragmentCart.OnFragmentInteractionListener, FragmentMap.OnFragmentInteractionListener{
     private static String LOG_TAG = MainActivity.class.getName();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;

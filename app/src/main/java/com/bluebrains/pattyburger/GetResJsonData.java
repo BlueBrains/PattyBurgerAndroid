@@ -53,12 +53,18 @@ public class GetResJsonData extends GetRowData{
             return;
         }
         final String RES_ITEMS = "restaurants";
-        final String RES_NAME = "res_name";
-        final String RES_DESCRIPTION = "res_logo";
-        final String RES_LOGO_URL = "res_logo";
+        final String RES_NAME = "name";
+        final String RES_DESCRIPTION = "description";
+        final String RES_LOGO = "logo";
+        final String RES_RANGE = "price_range";
         final String RES_ID = "id";
-        final String TAG_ADDRESS = "res_address";
-
+        final String RES_ADDRESS = "address";
+        final String RES_LAT="lat";
+        final String RES_LNG="lng";
+        final String RES_RATIO="rate";
+        final String RES_DELIVERABLE="deliverable";
+        final String RES_TYPE="category_name";
+        final String RES_PHONE="phone_nbr_1";
 
 
         try {
@@ -67,11 +73,20 @@ public class GetResJsonData extends GetRowData{
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
-                String address=jsonRes.getString(TAG_ADDRESS);
+               // String address=jsonRes.getString(RES_ADDRESS);
                 String description = jsonRes.getString(RES_DESCRIPTION);
+                String type=jsonRes.getString(RES_TYPE);
+                String logoUrl = jsonRes.getString(RES_LOGO);
+                String phone = jsonRes.getString(RES_PHONE);
+                double lat=jsonRes.getDouble(RES_LAT);
+                double lng=jsonRes.getDouble(RES_LNG);
+                double rating=jsonRes.getDouble(RES_RATIO);
+                int range=jsonRes.getInt(RES_RANGE);
                 int id = jsonRes.getInt(RES_ID);
-                //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                Restaurant resObject = new Restaurant(name,address,null,null,null,description,id,0);
+
+                //int people_number=jsonRes.getInt("people_number");
+                //double res_rating=people_number<1?0:(rating/people_number);
+                Restaurant resObject = new Restaurant(name,null,type,logoUrl,null,description,id,rating,lat,lng);
 
                 //String logo="http://10.0.3.2/burger_ownercp/uploads/"+id+"/"+jsonRes.getString("res_logo");
 //                int people_number=jsonRes.getInt("people_number");

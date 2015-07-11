@@ -17,15 +17,16 @@
     <string name="meal_name">Meal name</string>
     <string name="meal_description">Meal description</string>
     <string name="meal_price">Price</string>
+    <string name="title_activity_cart_list">CartList</string>
     <string name="hint_phone_number">Phone Number</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">fullName</string>
+    <string name="hint_name">Fullname</string>
     <!-- <string name="btn_login">LOGIN</string> -->
+
     <string name="btn_register">REGISTER</string>
     <!-- <string name="btn_link_to_register">Not a member? Sign up now.</string> -->
     <!-- <string name="btn_link_to_login">Already registred! Login Me.</string> -->
     <string name="welcome">Welcome</string>
-    <!-- <string name="btn_logout">LOGOUT</string> -->
     <string name="name">fullName</string>
     <string name="nav_item_home">Home</string>
     <string name="nav_item_cart">Cart</string>
@@ -41,5 +42,6 @@
     </string-array>
 
     <string name="title_activity_landing">LandingActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
