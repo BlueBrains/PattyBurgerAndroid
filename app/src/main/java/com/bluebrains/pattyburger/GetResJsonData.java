@@ -82,7 +82,7 @@ public class GetResJsonData extends GetRowData{
                 double lng=jsonRes.getDouble(RES_LNG);
                 double rating=jsonRes.getDouble(RES_RATIO);
                 int range=jsonRes.getInt(RES_RANGE);
-                int id =1;// jsonRes.getInt(RES_ID);
+                int id = jsonRes.getInt(RES_ID);
 
                 //int people_number=jsonRes.getInt("people_number");
                 //double res_rating=people_number<1?0:(rating/people_number);
