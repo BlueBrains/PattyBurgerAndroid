@@ -8,9 +8,10 @@
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="title_restaurant_meals">RestaurantMeals</string>
-    <string name="title_meal_description">MealDescription</string>
-    <string name="title_cart_list">CartList</string>
+    <string name="title_restaurant_meals">Restaurant Meals</string>
+    <string name="title_meal_description">Meal Description</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_cart_list">Cart List</string>
     <string name="meal_image_desc">Meal image</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="meal_name">Meal name</string>

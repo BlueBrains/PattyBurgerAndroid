@@ -83,6 +83,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
                 FragmentMeal fragment = new FragmentMeal();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         }

@@ -93,6 +93,7 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
                 FragmentRestaurantTab fragment = new FragmentRestaurantTab();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         }

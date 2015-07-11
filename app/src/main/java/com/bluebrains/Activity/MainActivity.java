@@ -33,6 +33,17 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+
+            @Override
+            public void onBackStackChanged() {
+                Fragment f = getSupportFragmentManager().findFragmentById(R.id.container_body);
+                if (f != null){
+                    updateTitleAndDrawer (f);
+                }
+
+            }
+        });
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
@@ -105,10 +116,31 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             // set the toolbar title
             getSupportActionBar().setTitle(title);
+        }
+    }
+    private void updateTitleAndDrawer (Fragment fragment){
+        String fragClassName = fragment.getClass().getName();
+
+        if (fragClassName.equals(FragmentRestaurants.class.getName())){
+            setTitle (R.string.title_restaurant_meals);
+            //set selected item position, etc
+        }
+        else if (fragClassName.equals(FragmentRestaurantTab.class.getName())){
+            setTitle ("Menu");  //TODO add this string to values
+            //set selected item position, etc
+        }
+        else if (fragClassName.equals(FragmentMeal.class.getName())){
+            setTitle (R.string.title_meal_description);
+            //set selected item position, etc
+        }
+        else if (fragClassName.equals(FragmentCart.class.getName())){
+            setTitle (R.string.title_cart_list);
+            //set selected item position, etc
         }
     }
 }
