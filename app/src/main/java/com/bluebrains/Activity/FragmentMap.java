@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bluebrains.pattyburger.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,11 +25,51 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Use the {@link FragmentMap#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentMap extends Fragment {
+public class FragmentMap extends Fragment implements GoogleMap.OnMarkerClickListener
+{
+    Marker marker;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toast.makeText(getActivity().getApplicationContext(),lat+" , "+lng,Toast.LENGTH_LONG).show();
 
+        LatLng currentLatLng;
+
+        SupportMapFragment fm = (SupportMapFragment)getChildFragmentManager()
+                .findFragmentById(R.id.map2);
+        if(fm!=null)
+            Toast.makeText(getActivity().getApplicationContext(),"fm not null",Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getActivity().getApplicationContext(),"fm is null",Toast.LENGTH_LONG).show();
+
+        currentLatLng=new LatLng(lat,lng);
+        googleMap = fm.getMap();
+        if(googleMap!=null)
+        {
+            Toast.makeText(getActivity().getApplicationContext(),"map not null",Toast.LENGTH_LONG).show();
+        }
+        else
+            Toast.makeText(getActivity().getApplicationContext(),"map is null",Toast.LENGTH_LONG).show();
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        currentLatLng=new LatLng(33.509032, 36.286178);
+        marker = googleMap.addMarker(new MarkerOptions()
+                .position(currentLatLng)
+                .title("Patty Burger"));
+        LatLng lol=new LatLng(33.513040, 36.289612);
+        marker = googleMap.addMarker(new MarkerOptions()
+                .position(lol)
+                .title("Patty Burger"));
+        lol=new LatLng(33.525061, 36.319137);
+        marker = googleMap.addMarker(new MarkerOptions()
+                .position(lol)
+                .title("Patty Burger"));
+        lol=new LatLng(33.532502, 36.281372);
+        marker = googleMap.addMarker(new MarkerOptions()
+                .position(lol)
+                .title("Patty Burger"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng,
+                11));
     }
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,20 +117,18 @@ public class FragmentMap extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        LatLng currentLatLng;
-        SupportMapFragment fm = (SupportMapFragment) getFragmentManager()
-                .findFragmentById(R.id.map2);
-        currentLatLng=new LatLng(lat,lng);
-        googleMap = fm.getMap();
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
-        Marker marker = googleMap.addMarker(new MarkerOptions()
-                .position(currentLatLng)
-                .title("Patty Burger"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng,
-                13));
+
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
 
+        if (marker.equals(marker))
+        {
+            Toast.makeText(getActivity().getApplicationContext(),marker.getTitle(),Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
