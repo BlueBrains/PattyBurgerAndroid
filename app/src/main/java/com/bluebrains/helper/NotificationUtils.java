@@ -41,7 +41,7 @@ public class NotificationUtils {
 
         if (isAppIsInBackground(mContext)) {
             // notification icon
-            int icon = R.drawable.ic_plus;
+            int icon = R.drawable.ic_launcher;
 
             int mNotificationId = AppConfig.NOTIFICATION_ID;
 

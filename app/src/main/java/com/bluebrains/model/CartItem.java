@@ -7,7 +7,7 @@ public class CartItem extends Meal {
     private int mCount;
 
     public CartItem(Meal meal){
-        super(meal.getmName(), meal.getmType(), meal.getmPrice(), meal.getmTime(), meal.getmDescription(), meal.getmImage());
+        super(meal.getmName(), meal.getmType(), meal.getmPrice(), meal.getmTime(), meal.getmDescription(), meal.getmImage(), meal.getmRating());
         this.mCount = 1;
     }
 

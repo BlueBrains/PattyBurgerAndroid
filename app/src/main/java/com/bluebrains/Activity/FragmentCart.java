@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bluebrains.adapter.CartRecyclerViewAdapter;
+import com.bluebrains.app.AppConfig;
 import com.bluebrains.app.Controller;
 import com.bluebrains.model.CartItem;
 import com.bluebrains.pattyburger.R;
@@ -44,6 +46,7 @@ public class FragmentCart extends Fragment {
 
     private RecyclerView mRecyclerView;
     private Button mSubmit;
+    private TextView mTotalCoast;
     private Context mContext;
     private CartRecyclerViewAdapter mCartRecyclerViewAdapter;
 
@@ -88,8 +91,10 @@ public class FragmentCart extends Fragment {
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         mSubmit = (Button) view.findViewById(R.id.cart_order_button);
+        mTotalCoast = (TextView) view.findViewById(R.id.total_order_coast);
+        mTotalCoast.append(" "+mController.getModelCart().getmTotalCoast()+"");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mCartRecyclerViewAdapter = new CartRecyclerViewAdapter(mContext,mController.getModelCart().getCart());
+        mCartRecyclerViewAdapter = new CartRecyclerViewAdapter(getActivity(),mController.getModelCart().getCart());
         mRecyclerView.setAdapter(mCartRecyclerViewAdapter);
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,9 +123,8 @@ public class FragmentCart extends Fragment {
                 // Tag used to cancel the request
                 final String TAG_SUBMIT = "submit_cart";
                 Log.d(TAG_SUBMIT, order.toString());
-                String url = "http://10.0.3.2/burger_ownercp/index.php/res/order";
 
-                JsonObjectRequest orderObj = new JsonObjectRequest(Request.Method.POST, url, order,
+                JsonObjectRequest orderObj = new JsonObjectRequest(Request.Method.POST, AppConfig.ORDER_URL, order,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {

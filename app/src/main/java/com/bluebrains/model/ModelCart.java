@@ -8,7 +8,33 @@ import java.util.ArrayList;
 public class ModelCart {
 
     private ArrayList<CartItem> cart = new ArrayList<CartItem>();
+    private double mTotalCoast =0;
+    private int mResId;
+    private int mUserId;
 
+    public int getmResId() {
+        return mResId;
+    }
+
+    public void setmResId(int mResId) {
+        this.mResId = mResId;
+    }
+
+    public int getmUserId() {
+        return mUserId;
+    }
+
+    public void setmUserId(int mUserId) {
+        this.mUserId = mUserId;
+    }
+
+    public double getmTotalCoast() {
+        return mTotalCoast;
+    }
+
+    public void setmTotalCoast(double mTotalCoast) {
+        this.mTotalCoast = mTotalCoast;
+    }
 
     public Meal getItem(int pPosition) {
         return cart.get(pPosition);

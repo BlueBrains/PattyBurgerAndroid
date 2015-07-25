@@ -3,6 +3,7 @@ package com.bluebrains.pattyburger;
 import android.net.Uri;
 import android.util.Log;
 
+import com.bluebrains.app.AppConfig;
 import com.bluebrains.model.Meal;
 
 import org.json.JSONArray;
@@ -39,15 +40,12 @@ public class GetMealJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(int id, int tabNum){
-        final String BURGER_API_BASE_URL = "http://burger.remmaz.com/index.php/restaurants/res";
-        final String FORMAT_PRAM = "format";
         final String RES_ID_PARAM = "id";
         final String RES_TAB_PARAM = "tab";
 
-        mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
+        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"res").buildUpon()
         .appendQueryParameter(RES_ID_PARAM, Integer.toString(id))
         .appendQueryParameter(RES_TAB_PARAM, Integer.toString(tabNum))
-        .appendQueryParameter(FORMAT_PRAM, "json")
         .build();
 
         return mDestinationUri != null;
@@ -64,25 +62,25 @@ public class GetMealJsonData extends GetRowData{
             Log.e(LOG_TAG,"Error downloading row file");
             return;
         }
-        final String RES_ITEMS = "restaurant";
+        final String RES_MEALS = "meals";
         final String MEAL_NAME = "name";
-        //final String MEAL_TYPE = "type";
         final String MEAL_PRICE = "price";
         final String MEAL_TIME = "preparing_time";
-        final String MEAL_DESCRIPTION = "description";
-        final String MEAL_LOGO_URL = "meal_logo";
+        final String MEAL_DESCRIPTION = "details";
+        final String MEAL_LOGO_URL = "image";
+        final String MEAL_RATE = "rating";
         try {
             JSONObject jsonData = new JSONObject(getmData());
-            JSONArray itemsArray = jsonData.getJSONArray(RES_ITEMS);
+            JSONArray itemsArray = jsonData.getJSONArray(RES_MEALS);
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonMeal = itemsArray.getJSONObject(i);
                 String name = jsonMeal.getString(MEAL_NAME);
                 String description = jsonMeal.getString(MEAL_DESCRIPTION);
                 double price = jsonMeal.getDouble(MEAL_PRICE);
                 double prepare = jsonMeal.getDouble(MEAL_TIME);
-                //String logoUrl = jsonMeal.getString(RES_LOGO_URL);
-                Meal mealObject = new Meal(name,null,price,prepare,null,description);
-
+                double ratnig = jsonMeal.getDouble(MEAL_RATE);
+                String logoUrl = jsonMeal.getString(MEAL_LOGO_URL);
+                Meal mealObject = new Meal(name,null,price,prepare,description,logoUrl,ratnig);
                 this.mMeals.add(mealObject);
             }
             for(Meal singleMeal : mMeals){

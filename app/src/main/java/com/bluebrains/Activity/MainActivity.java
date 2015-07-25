@@ -1,6 +1,9 @@
 package com.bluebrains.Activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,9 +19,10 @@ import android.view.View;
 
 import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
 import com.bluebrains.pattyburger.R;
+import com.bluebrains.receiver.PusherReciver;
 
 
-public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener, FragmentDrawer.OnFragmentInteractionListener, FragmentRestaurants.OnFragmentInteractionListener, FragmentRestaurantTab.OnFragmentInteractionListener, FragmentMeal.OnFragmentInteractionListener, FragmentCart.OnFragmentInteractionListener, FragmentMap.OnFragmentInteractionListener{
+public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener, FragmentDrawer.OnFragmentInteractionListener, FragmentRestaurants.OnFragmentInteractionListener, FragmentRestaurantTab.OnFragmentInteractionListener, FragmentMeal.OnFragmentInteractionListener, FragmentCart.OnFragmentInteractionListener, FragmentMap.OnFragmentInteractionListener, FragmentRestaurantDetails.OnFragmentInteractionListener{
     private static String LOG_TAG = MainActivity.class.getName();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
@@ -52,6 +56,29 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     }
 
     @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1){
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.quit)
+                    .setMessage(R.string.really_quit)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton(R.string.no, null)
+                    .show();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -67,13 +94,15 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startService(new Intent(this,PusherReciver.class));
         }else if (id == R.id.action_cart) {
             FragmentCart fragment = new FragmentCart();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle(R.string.title_cart_list);
         }
 
         return super.onOptionsItemSelected(item);
@@ -94,7 +123,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 fragment = new FragmentRestaurants();
-                title = getString(R.string.title_restaurant_meals);
+                title = getString(R.string.title_restaurants);
                 break;
             case 1:
                 fragment = new FragmentCart();
@@ -127,20 +156,19 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         String fragClassName = fragment.getClass().getName();
 
         if (fragClassName.equals(FragmentRestaurants.class.getName())){
-            setTitle (R.string.title_restaurant_meals);
+            getSupportActionBar().setTitle (R.string.title_restaurants);
             //set selected item position, etc
-        }
-        else if (fragClassName.equals(FragmentRestaurantTab.class.getName())){
-            setTitle ("Menu");  //TODO add this string to values
+        }else if (fragClassName.equals(FragmentRestaurantTab.class.getName())){
+            getSupportActionBar().setTitle (R.string.title_restaurant_menu);
             //set selected item position, etc
-        }
-        else if (fragClassName.equals(FragmentMeal.class.getName())){
-            setTitle (R.string.title_meal_description);
+        }else if (fragClassName.equals(FragmentMeal.class.getName())){
+            getSupportActionBar().setTitle (R.string.title_meal_description);
             //set selected item position, etc
-        }
-        else if (fragClassName.equals(FragmentCart.class.getName())){
-            setTitle (R.string.title_cart_list);
+        }else if (fragClassName.equals(FragmentCart.class.getName())) {
+            getSupportActionBar().setTitle(R.string.title_cart_list);
             //set selected item position, etc
+        }else if (fragClassName.equals(FragmentCart.class.getName())){
+            getSupportActionBar().setTitle (R.string.title_restaurant_location);
         }
     }
 }

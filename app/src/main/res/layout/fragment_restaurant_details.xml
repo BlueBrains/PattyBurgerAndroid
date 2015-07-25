@@ -1,0 +1,303 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bluebrains.Activity.FragmentRestaurantDetails">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/res_logo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="15dp"
+            android:textAlignment="center"
+            android:src="@drawable/placeholder"
+            android:scaleType="centerInside"
+            android:longClickable="false"
+            android:cropToPadding="false"
+            android:baselineAlignBottom="false"
+            android:adjustViewBounds="false" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/show_menu"
+            android:id="@+id/sub_header"
+            android:layout_toRightOf="@+id/res_logo">
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:text="Show Menu"
+                android:textAllCaps="false"
+                android:id="@+id/show_menu"
+                android:background="#ff0da129"
+                android:textColor="@color/bright_foreground_inverse_material_light"
+                android:layout_marginBottom="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Restaurant Name"
+                android:textAllCaps="false"
+                android:id="@+id/res_name"
+                android:layout_above="@+id/show_menu"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_below="@+id/header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Ratings"
+            android:id="@+id/Ratings"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp" />
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:id="@+id/body_ratingBar"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:nestedScrollingEnabled="false"
+            android:numStars="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/Ratings"
+            android:layout_toRightOf="@+id/Ratings"
+            android:layout_toEndOf="@+id/Ratings"
+            android:layout_alignBottom="@+id/Ratings" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Read Reviews"
+            android:id="@+id/read_reviews"
+            android:layout_alignTop="@+id/body_ratingBar"
+            android:layout_toLeftOf="@+id/read_reviews_arrow"
+            android:layout_toStartOf="@+id/read_reviews_arrow" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/read_reviews_arrow"
+            android:background="@drawable/abc_ic_go_search_api_mtrl_alpha"
+            android:layout_alignBottom="@+id/read_reviews"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:clickable="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left|top"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/body"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Location"
+            android:id="@+id/location"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="34dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/location"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Type"
+            android:id="@+id/type"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/location"
+            android:layout_alignLeft="@+id/location"
+            android:layout_alignStart="@+id/location" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/type"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Phone"
+            android:id="@+id/phone"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/type"
+            android:layout_alignLeft="@+id/type"
+            android:layout_alignStart="@+id/type" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Deliverable"
+            android:id="@+id/deliverable"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:layout_alignLeft="@+id/phone"
+            android:layout_alignStart="@+id/phone" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/deliverable"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Price range"
+            android:id="@+id/price_range"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/deliverable"
+            android:layout_alignLeft="@+id/deliverable"
+            android:layout_alignStart="@+id/deliverable" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/price_range"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Description"
+            android:id="@+id/description"
+            android:layout_below="@+id/price_range"
+            android:layout_marginTop="25dp"
+            android:layout_alignLeft="@+id/price_range"
+            android:layout_alignStart="@+id/price_range" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/location_text"
+            android:layout_above="@+id/type"
+            android:layout_alignBottom="@+id/location"
+            android:layout_alignTop="@+id/location"
+            android:layout_alignLeft="@+id/phone_text"
+            android:layout_alignStart="@+id/phone_text"
+            android:layout_alignRight="@+id/description_text"
+            android:layout_alignEnd="@+id/description_text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/type_text"
+            android:layout_above="@+id/phone"
+            android:layout_alignTop="@+id/type"
+            android:layout_alignBottom="@+id/type"
+            android:text="food type"
+            android:layout_alignLeft="@+id/location_text"
+            android:layout_alignStart="@+id/location_text"
+            android:layout_alignRight="@+id/location_text"
+            android:layout_alignEnd="@+id/location_text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_text"
+            android:layout_alignTop="@+id/phone"
+            android:layout_alignBottom="@+id/phone"
+            android:text="3713324"
+            android:layout_alignLeft="@+id/footer_priceRange"
+            android:layout_alignStart="@+id/footer_priceRange"
+            android:layout_alignRight="@+id/description_text"
+            android:layout_alignEnd="@+id/description_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_text"
+            android:layout_alignTop="@+id/description"
+            android:layout_alignLeft="@+id/footer_priceRange"
+            android:layout_alignStart="@+id/footer_priceRange"
+            android:text="we offer a very delicious food made by an expert chefs "
+            android:layout_marginRight="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deliverable_image"
+            android:layout_alignTop="@id/deliverable"
+            android:layout_above="@+id/textView"
+            android:layout_alignLeft="@+id/phone_text"
+            android:layout_alignStart="@+id/phone_text"
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/footer_priceRange"
+            android:layout_centerHorizontal="true"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_alignTop="@+id/price_range"
+            android:layout_above="@+id/description" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

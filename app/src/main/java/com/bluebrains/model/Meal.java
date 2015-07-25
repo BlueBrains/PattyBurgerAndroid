@@ -11,19 +11,21 @@ public class Meal implements Parcelable {
     private String mType;
     private double mPrice;
     private double mTime;
+    private double mRating;
     private String mDescription;
     private String mImage;
 
     public Meal(){
 
     }
-    public Meal(String mName, String mType, double mPrice, double mTime, String mDescription, String mImage) {
+    public Meal(String mName, String mType, double mPrice, double mTime, String mDescription, String mImage, double rating) {
         this.mName = mName;
         this.mType = mType;
         this.mPrice = mPrice;
         this.mTime = mTime;
         this.mDescription = mDescription;
         this.mImage = mImage;
+        this.mRating = rating;
     }
 
     public String getmName() {
@@ -73,6 +75,14 @@ public class Meal implements Parcelable {
 
     public void setmTime(double mTime) {
         this.mTime = mTime;
+    }
+
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
     }
 
     @Override

@@ -5,8 +5,11 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_cart" android:title="@string/action_cart"
         android:orderInCategory="100" app:showAsAction="always"
-        android:icon="@drawable/ic_cart"/>
+        android:icon="@drawable/ic_cart_2"/>
     <item android:id="@+id/action_search" android:title="@string/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search_2"/>
+    <item android:id="@+id/action_search" android:title="@string/action_my_location"
         android:orderInCategory="100" app:showAsAction="always"
-        android:icon="@drawable/ic_search"/>
+        android:icon="@drawable/ic_map_3"/>
 </menu>

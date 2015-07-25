@@ -30,11 +30,11 @@ import java.util.List;
  */
 public class FragmentRestaurantTab extends Fragment {
 
-    public static final String ARG_PARAM1 = "restaurant_id";
-    public static final String ARG_PARAM2 = "restaurant_tabs_number";
+    public static final String ARG_RES_ID = "restaurant_id";
+    public static final String ARG_TABS = "restaurant_tabs_number";
     public static final String Item = "restaurant_tab_item";
     private int mRestaurantId;
-    private int mRestaurantTabNum;
+    private ArrayList<String> mtabTitles;
     private OnFragmentInteractionListener mListener;
     private com.bluebrains.common.view.SlidingTabLayout mSlidingTabLayout;
 
@@ -42,9 +42,7 @@ public class FragmentRestaurantTab extends Fragment {
      * A {@link android.support.v4.view.ViewPager} which will be used in conjunction with the {@link com.bluebrains.common.view.SlidingTabLayout} above.
      */
 
-    //private List<Meal> mMealList;
     private List<RecyclerView> mRecyclerViews;
-    //private MealRecyclerViewAdapter mealRecyclerViewAdapters;
     private ViewPager mViewPager;
 
 
@@ -53,15 +51,15 @@ public class FragmentRestaurantTab extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param restaurantId Identifer for restaurnt.
-     * @param restaurantTabNum number of tabs in the menu.
+     * @param tabTitles tabs titles.
      * @return A new instance of fragment RestaurantTab.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentRestaurantTab newInstance(int restaurantId, int restaurantTabNum) {
+    public static FragmentRestaurantTab newInstance(int restaurantId, ArrayList<String> tabTitles) {
         FragmentRestaurantTab fragment = new FragmentRestaurantTab();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, restaurantId);
-        args.putInt(ARG_PARAM2, restaurantTabNum);
+        args.putInt(ARG_RES_ID, restaurantId);
+        args.putStringArrayList(ARG_TABS, tabTitles);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,9 +72,9 @@ public class FragmentRestaurantTab extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mRestaurantId = getArguments().getInt(ARG_PARAM1);
-            mRestaurantTabNum = getArguments().getInt(ARG_PARAM2);
-            mRecyclerViews = new ArrayList<RecyclerView>(mRestaurantTabNum);
+            mRestaurantId = getArguments().getInt(ARG_RES_ID);
+            mtabTitles = getArguments().getStringArrayList(ARG_TABS);
+            mRecyclerViews = new ArrayList<>(mtabTitles.size());
         }
     }
 
@@ -149,7 +147,7 @@ public class FragmentRestaurantTab extends Fragment {
          */
         @Override
         public int getCount() {
-            return mRestaurantTabNum;
+            return mtabTitles.size();
         }
 
         /**
@@ -171,7 +169,7 @@ public class FragmentRestaurantTab extends Fragment {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Item " + (position + 1);
+            return mtabTitles.get(position);
         }
         // END_INCLUDE (pageradapter_getpagetitle)
 

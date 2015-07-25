@@ -2,21 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:weightSum="1"
     android:id="@+id/item"
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:background="#fffef9ff">
 
     <ImageView android:id="@+id/thumbnail"
         android:scaleType="fitCenter"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:src="@drawable/placeholder"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentStart="true" />
 
     <RelativeLayout
         android:orientation="vertical"
@@ -24,10 +25,10 @@
         android:layout_height="match_parent"
         android:id="@+id/item_details"
         android:layout_toEndOf="@+id/thumbnail"
-        android:layout_alignBottom="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:layout_alignParentBottom="true">
 
         <TextView android:id="@+id/item_title"
             android:layout_height="20dp"
@@ -38,33 +39,33 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/delete_item"
-            android:background="@drawable/ic_delete"
+            android:background="@drawable/ic_delete_2"
+            android:clickable="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/total_cart_price"
-            android:layout_alignEnd="@+id/total_cart_price"
-            android:layout_marginLeft="10dp" />
+            android:layout_alignEnd="@+id/total_cart_price" />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/item_title"
             android:id="@+id/item_details_count"
             android:padding="5dp"
-            android:layout_alignEnd="@+id/item_title"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/add_button"
-                android:background="@drawable/ic_plus"
+                android:background="@drawable/ic_plus_2"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/counter"
-                android:layout_toStartOf="@+id/counter" />
+                android:layout_toStartOf="@+id/counter"
+                android:clickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,14 +76,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp" />
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/minus_button"
-                android:background="@drawable/ic_minus"
+                android:background="@drawable/ic_minus_2"
                 android:layout_alignTop="@+id/add_button"
                 android:layout_toRightOf="@+id/counter"
-                android:layout_toEndOf="@+id/counter" />
+                android:layout_toEndOf="@+id/counter"
+                android:clickable="true" />
 
 
         </RelativeLayout>
@@ -93,9 +95,11 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="item price"
             android:id="@+id/item_price"
-            android:layout_centerVertical="true"
+            android:layout_above="@+id/total_cart_price"
             android:layout_alignLeft="@+id/total_cart_price"
-            android:layout_alignStart="@+id/total_cart_price" />
+            android:layout_alignStart="@+id/total_cart_price"
+            android:layout_alignRight="@+id/total_cart_price"
+            android:layout_alignEnd="@+id/total_cart_price" />
 
         <TextView
             android:layout_width="wrap_content"

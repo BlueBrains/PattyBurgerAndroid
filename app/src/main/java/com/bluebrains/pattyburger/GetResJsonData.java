@@ -3,6 +3,7 @@ package com.bluebrains.pattyburger;
 import android.net.Uri;
 import android.util.Log;
 
+import com.bluebrains.app.AppConfig;
 import com.bluebrains.model.Restaurant;
 
 import org.json.JSONArray;
@@ -34,12 +35,7 @@ public class GetResJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(){
-        final String BURGER_API_BASE_URL = "http://burger.remmaz.com/index.php/restaurants/ress";
-        final String FORMAT_PRAM = "format";
-
-        mDestinationUri = Uri.parse(BURGER_API_BASE_URL).buildUpon()
-                .appendQueryParameter(FORMAT_PRAM, "json")
-                .build();
+        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"ress");
         return mDestinationUri != null;
     }
 
@@ -53,18 +49,19 @@ public class GetResJsonData extends GetRowData{
             return;
         }
         final String RES_ITEMS = "restaurants";
+        final String RES_ID = "id";
         final String RES_NAME = "name";
         final String RES_DESCRIPTION = "description";
         final String RES_LOGO = "logo";
         final String RES_RANGE = "price_range";
-        final String RES_ID = "id";
         final String RES_ADDRESS = "address";
         final String RES_LAT="lat";
         final String RES_LNG="lng";
-        final String RES_RATIO="rate";
+        final String RES_RATE="rate";
         final String RES_DELIVERABLE="deliverable";
         final String RES_TYPE="category_name";
         final String RES_PHONE="phone_nbr_1";
+        final String RES_CATEGORY_NUM = "category_num";
 
 
         try {
@@ -73,28 +70,20 @@ public class GetResJsonData extends GetRowData{
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
-               // String address=jsonRes.getString(RES_ADDRESS);
+               String address=jsonRes.getString(RES_ADDRESS);
                 String description = jsonRes.getString(RES_DESCRIPTION);
                 String type=jsonRes.getString(RES_TYPE);
                 String logoUrl = jsonRes.getString(RES_LOGO);
                 String phone = jsonRes.getString(RES_PHONE);
                 double lat=jsonRes.getDouble(RES_LAT);
                 double lng=jsonRes.getDouble(RES_LNG);
-                double rating=jsonRes.getDouble(RES_RATIO);
-                int range=jsonRes.getInt(RES_RANGE);
+                double rating=jsonRes.getDouble(RES_RATE);
+                double priceRange = jsonRes.getDouble(RES_RANGE);
                 int id = jsonRes.getInt(RES_ID);
-
-                //int people_number=jsonRes.getInt("people_number");
+//                int categoryNum = jsonRes.getInt(RES_CATEGORY_NUM);
+                boolean deliverable = jsonRes.getInt(RES_DELIVERABLE) == 1 ? true : false;
                 //double res_rating=people_number<1?0:(rating/people_number);
-                Restaurant resObject = new Restaurant(name,null,type,logoUrl,null,description,id,rating,lat,lng);
-
-                //String logo="http://10.0.3.2/burger_ownercp/uploads/"+id+"/"+jsonRes.getString("res_logo");
-//                int people_number=jsonRes.getInt("people_number");
-//                double rating=jsonRes.getDouble("rating");
-//                double res_rating=people_number<1?0:(rating/people_number);
-                //String logoUrl = jsonRes.getString(RES_LOGO_URL);
-                //Restaurant resObject = new Restaurant(name,address,null,logo,null,description,id,res_rating);
-
+                Restaurant resObject = new Restaurant(name, address, type, logoUrl, description, id, rating, lat, lng, phone, deliverable, priceRange);
 
                 this.mRestaurants.add(resObject);
             }

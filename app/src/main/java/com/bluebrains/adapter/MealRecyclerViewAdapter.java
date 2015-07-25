@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bluebrains.Activity.FragmentMeal;
@@ -43,11 +45,12 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
                 .placeholder(R.drawable.placeholder)
                 .into(mealViewHolder.thumbnail);
         mealViewHolder.name.setText(mealItem.getmName());
+        mealViewHolder.rating.setRating((float)mealItem.getmRating());
     }
 
     @Override
     public MealViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.restaurant,null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.meal,null);
         MealViewHolder mealViewHolder = new MealViewHolder(view);
         return mealViewHolder;
     }
@@ -60,12 +63,14 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
     class MealViewHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
         protected ImageView thumbnail;
         protected TextView name;
+        protected RatingBar rating;
 
         public MealViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             this.thumbnail = (ImageView)view.findViewById(R.id.thumbnail);
             this.name = (TextView)view.findViewById(R.id.name);
+            this.rating = (RatingBar)view.findViewById(R.id.body_ratingBar);
         }
 
         @Override
@@ -85,6 +90,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
                 transaction.replace(R.id.container_body, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+                ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_meal_description);
             }
         }
     }

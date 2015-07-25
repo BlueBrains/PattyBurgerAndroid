@@ -1,24 +1,21 @@
 package com.bluebrains.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bluebrains.Activity.FragmentMap;
-import com.bluebrains.Activity.FragmentRestaurantTab;
-import com.bluebrains.Activity.FragmentRestaurants;
-import com.bluebrains.googleplacesandmap.LocationActivity;
+import com.bluebrains.Activity.FragmentRestaurantDetails;
 import com.bluebrains.model.Restaurant;
 import com.bluebrains.pattyburger.R;
 import com.squareup.picasso.Picasso;
@@ -74,7 +71,7 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
         protected RatingBar rating;
         protected double lat;
         protected double lng;
-        protected Button MapButton;
+        protected ImageView MapButton;
 
         public RestaurantViewHolder(View view) {
             super(view);
@@ -82,16 +79,14 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
             this.thumbnail = (ImageView)view.findViewById(R.id.thumbnail);
             this.name = (TextView)view.findViewById(R.id.name);
             this.description = (TextView)view.findViewById(R.id.description);
-            this.rating=(RatingBar)view.findViewById(R.id.ratingBar);
-            this.MapButton=(Button)view.findViewById(R.id.map);
+            this.rating=(RatingBar)view.findViewById(R.id.body_ratingBar);
+            this.MapButton=(ImageView)view.findViewById(R.id.map);
             MapButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle args = new Bundle();
-                    int restaurantId = mResList.get(getPosition()).getmID();
-                    double lat=mResList.get(getPosition()).getmLat();
-                    double lng=mResList.get(getPosition()).getmLng();
-                    int restaurantTabNum = 2;
+                    lat=mResList.get(getPosition()).getmLat();
+                    lng=mResList.get(getPosition()).getmLng();
                     args.putDouble(FragmentMap.LAT, lat);
                     args.putDouble(FragmentMap.LNG, lng);
                     if (mContext instanceof FragmentActivity) {
@@ -101,7 +96,9 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
                         FragmentMap fragment = new FragmentMap();
                         fragment.setArguments(args);
                         transaction.replace(R.id.container_body, fragment);
+                        transaction.addToBackStack(null);
                         transaction.commit();
+                        ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_restaurant_location);
                     }
                 }
             });
@@ -110,22 +107,18 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
         @Override
         public void onClick(View v) {
             Log.d("HI", "Hi there! " + mResList.get(getPosition()).getmName());
-//            Intent intent = new Intent(mContext,RestaurantMenu.class);
-//            intent.putExtra(RES_ID,mResList.get(getPosition()).getmID());
             Bundle args = new Bundle();
-            int restaurantId = mResList.get(getPosition()).getmID();
-            int restaurantTabNum = 2;
-            args.putInt(FragmentRestaurantTab.ARG_PARAM1, restaurantId);
-            args.putInt(FragmentRestaurantTab.ARG_PARAM2, restaurantTabNum);
+            args.putParcelable(FragmentRestaurantDetails.ARG_RES,mResList.get(getPosition()));
             if (mContext instanceof FragmentActivity) {
                 // We can get the fragment manager
                 FragmentActivity activity = (FragmentActivity)(mContext);
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                FragmentRestaurantTab fragment = new FragmentRestaurantTab();
+                FragmentRestaurantDetails fragment = new FragmentRestaurantDetails();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+                ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_restaurant_details);
             }
         }
     }
