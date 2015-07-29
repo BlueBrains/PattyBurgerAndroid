@@ -35,7 +35,7 @@ public class GetResJsonData extends GetRowData{
 
     }
     public boolean createAndroidUpdateUri(){
-        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"ress");
+        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"restaurants/ress");
         return mDestinationUri != null;
     }
 
@@ -70,7 +70,7 @@ public class GetResJsonData extends GetRowData{
             for (int i = 0; i<itemsArray.length();i++){
                 JSONObject jsonRes = itemsArray.getJSONObject(i);
                 String name = jsonRes.getString(RES_NAME);
-               String address=jsonRes.getString(RES_ADDRESS);
+                String address=jsonRes.getString(RES_ADDRESS);
                 String description = jsonRes.getString(RES_DESCRIPTION);
                 String type=jsonRes.getString(RES_TYPE);
                 String logoUrl = jsonRes.getString(RES_LOGO);

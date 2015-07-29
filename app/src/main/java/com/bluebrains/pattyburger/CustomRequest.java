@@ -22,7 +22,7 @@ private Map<String, String> params;
 
 public CustomRequest(String url, Map<String, String> params,
         Listener<JSONObject> reponseListener, ErrorListener errorListener) {
-    super(Method.GET, url, errorListener);
+    super(Method.POST, url, errorListener);
     this.listener = reponseListener;
     this.params = params;
 }

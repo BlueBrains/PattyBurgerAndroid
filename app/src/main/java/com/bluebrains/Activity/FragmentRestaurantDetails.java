@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,7 +112,7 @@ public class FragmentRestaurantDetails extends Fragment {
                 FragmentRestaurantTab fragment = new FragmentRestaurantTab();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
-                transaction.addToBackStack(null);
+                transaction.addToBackStack(FragmentRestaurantTab.class.getSimpleName());
                 transaction.commit();
                 getActivity().setTitle(R.string.title_restaurant_menu);
             }
@@ -135,7 +136,12 @@ public class FragmentRestaurantDetails extends Fragment {
         mReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "TODO", Toast.LENGTH_LONG).show(); //TODO
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentReadReviews fragment = FragmentReadReviews.newInstance(mRes.getmID());
+                transaction.replace(R.id.container_body, fragment);
+                transaction.addToBackStack(FragmentRestaurants.class.getSimpleName());
+                transaction.commit();
+                ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_read_reviews);
             }
         });
     }

@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bluebrains.Activity.FragmentOrderDetails"
+    android:background="@color/btn_login_bg">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/layout_rounded2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/relativeLayout">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/area_spinner"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/address_info_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="12dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/layout_rounded"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ADDRESS INFO"
+            android:id="@+id/address_info_text"
+            android:layout_marginTop="58dp"
+            android:textColor="@color/colorPrimary"
+            android:textIsSelectable="false"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/place_type_spinner"
+            android:layout_below="@+id/area_spinner"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/layout_rounded"
+            android:layout_alignLeft="@+id/area_spinner"
+            android:layout_alignStart="@+id/area_spinner" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/street_edit_text"
+            android:layout_below="@+id/place_type_spinner"
+            android:layout_marginTop="12dp"
+            android:hint="Street Name/Number"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_alignLeft="@+id/place_type_spinner"
+            android:layout_alignStart="@+id/place_type_spinner"
+            android:layout_alignRight="@+id/place_type_spinner"
+            android:layout_alignEnd="@+id/place_type_spinner"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/layout_rounded" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/block_edit_text"
+            android:layout_below="@+id/street_edit_text"
+            android:layout_alignLeft="@+id/street_edit_text"
+            android:layout_alignStart="@+id/street_edit_text"
+            android:layout_marginTop="12dp"
+            android:hint="Block (Required)"
+            android:textColorHint="@color/colorPrimary"
+            android:textIsSelectable="false"
+            android:layout_alignRight="@+id/street_edit_text"
+            android:layout_alignEnd="@+id/street_edit_text"
+            android:background="@drawable/layout_rounded"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:id="@+id/house_edit_text"
+            android:layout_below="@+id/block_edit_text"
+            android:layout_marginTop="12dp"
+            android:hint="House Name/Number"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_alignLeft="@+id/block_edit_text"
+            android:layout_alignStart="@+id/block_edit_text"
+            android:layout_alignRight="@+id/block_edit_text"
+            android:layout_alignEnd="@+id/block_edit_text"
+            android:background="@drawable/layout_rounded"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/adress_next_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@layout/rounded_button2"
+            android:textColor="@color/white"
+            android:layout_alignLeft="@+id/adress_more_info_text"
+            android:layout_alignStart="@+id/adress_more_info_text"
+            android:textSize="22sp"
+            android:layout_alignRight="@+id/adress_more_info_text"
+            android:layout_alignEnd="@+id/adress_more_info_text" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/adress_more_info_text"
+            android:layout_below="@+id/house_edit_text"
+            android:layout_alignLeft="@+id/house_edit_text"
+            android:layout_alignStart="@+id/house_edit_text"
+            android:layout_above="@+id/adress_next_btn"
+            android:hint="More info"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_alignRight="@+id/house_edit_text"
+            android:layout_alignEnd="@+id/house_edit_text"
+            android:background="@drawable/layout_rounded"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

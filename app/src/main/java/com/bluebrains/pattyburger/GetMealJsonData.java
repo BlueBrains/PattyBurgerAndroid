@@ -25,7 +25,7 @@ public class GetMealJsonData extends GetRowData{
     private String LOG_TAG = GetMealJsonData.class.getName();
     private List<Meal> mMeals;
     private Uri mDestinationUri;
-
+    private int mResID;
     public GetMealJsonData(int id, int tabNum){
         super(null,GET);
         createAndroidUpdateUri(id,tabNum);
@@ -42,8 +42,9 @@ public class GetMealJsonData extends GetRowData{
     public boolean createAndroidUpdateUri(int id, int tabNum){
         final String RES_ID_PARAM = "id";
         final String RES_TAB_PARAM = "tab";
+        mResID = id;
 
-        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"res").buildUpon()
+        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"restaurants/res").buildUpon()
         .appendQueryParameter(RES_ID_PARAM, Integer.toString(id))
         .appendQueryParameter(RES_TAB_PARAM, Integer.toString(tabNum))
         .build();
@@ -63,6 +64,7 @@ public class GetMealJsonData extends GetRowData{
             return;
         }
         final String RES_MEALS = "meals";
+        final String MEAL_ID = "id";
         final String MEAL_NAME = "name";
         final String MEAL_PRICE = "price";
         final String MEAL_TIME = "preparing_time";
@@ -80,7 +82,14 @@ public class GetMealJsonData extends GetRowData{
                 double prepare = jsonMeal.getDouble(MEAL_TIME);
                 double ratnig = jsonMeal.getDouble(MEAL_RATE);
                 String logoUrl = jsonMeal.getString(MEAL_LOGO_URL);
-                Meal mealObject = new Meal(name,null,price,prepare,description,logoUrl,ratnig);
+                Integer id = jsonMeal.getInt(MEAL_ID);
+//                JSONArray specs = jsonMeal.getJSONArray("specs");
+                Meal mealObject = new Meal(id,name,null,price,prepare,description,logoUrl,ratnig);
+                mealObject.setmResID(mResID);
+//                for(int j = 0; j<specs.length(); j++){
+//                    JSONObject spec = specs.getJSONObject(i);
+//                    mealObject.getmSpecs().add(spec.getString("spec_name"));
+//                }
                 this.mMeals.add(mealObject);
             }
             for(Meal singleMeal : mMeals){

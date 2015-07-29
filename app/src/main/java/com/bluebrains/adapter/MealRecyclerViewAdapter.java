@@ -46,6 +46,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
                 .into(mealViewHolder.thumbnail);
         mealViewHolder.name.setText(mealItem.getmName());
         mealViewHolder.rating.setRating((float)mealItem.getmRating());
+        mealViewHolder.description.setText(mealItem.getmDescription());
     }
 
     @Override
@@ -64,6 +65,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
         protected ImageView thumbnail;
         protected TextView name;
         protected RatingBar rating;
+        protected TextView description;
 
         public MealViewHolder(View view) {
             super(view);
@@ -71,6 +73,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
             this.thumbnail = (ImageView)view.findViewById(R.id.thumbnail);
             this.name = (TextView)view.findViewById(R.id.name);
             this.rating = (RatingBar)view.findViewById(R.id.body_ratingBar);
+            this.description = (TextView)view.findViewById(R.id.description);
         }
 
         @Override
@@ -88,7 +91,7 @@ public class MealRecyclerViewAdapter extends RecyclerView.Adapter<MealRecyclerVi
                 FragmentMeal fragment = new FragmentMeal();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
-                transaction.addToBackStack(null);
+                transaction.addToBackStack(FragmentMeal.class.getSimpleName());
                 transaction.commit();
                 ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_meal_description);
             }

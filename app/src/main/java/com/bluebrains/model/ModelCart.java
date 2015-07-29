@@ -11,6 +11,15 @@ public class ModelCart {
     private double mTotalCoast =0;
     private int mResId;
     private int mUserId;
+    private Address mAddress;
+
+    public Address getmAddress() {
+        return mAddress;
+    }
+
+    public void setmAddress(Address mAddress) {
+        this.mAddress = mAddress;
+    }
 
     public int getmResId() {
         return mResId;
@@ -40,9 +49,10 @@ public class ModelCart {
         return cart.get(pPosition);
     }
 
-    public void setItem(Meal meal) {
+    public CartItem setItem(Meal meal) {
         CartItem temp = new CartItem(meal);
         cart.add(temp);
+        return temp;
     }
 
     public int getCartSize() {

@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
@@ -61,6 +62,8 @@ public class NotificationUtils {
                     .setAutoCancel(true)
                     .setContentTitle(title)
                     .setStyle(inboxStyle)
+                    .setLights(Color.GREEN, 3000, 3000)
+                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                     .setContentIntent(resultPendingIntent)
                     .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                     .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))

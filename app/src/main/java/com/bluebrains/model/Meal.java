@@ -3,10 +3,13 @@ package com.bluebrains.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Molham on 4/2/2015.
  */
 public class Meal implements Parcelable {
+    private Integer mID;
     private String mName;
     private String mType;
     private double mPrice;
@@ -14,11 +17,13 @@ public class Meal implements Parcelable {
     private double mRating;
     private String mDescription;
     private String mImage;
-
+    private Integer mResID;
+    private ArrayList<String> mSpecs;
     public Meal(){
 
     }
-    public Meal(String mName, String mType, double mPrice, double mTime, String mDescription, String mImage, double rating) {
+    public Meal(Integer id,String mName, String mType, double mPrice, double mTime, String mDescription, String mImage, double rating) {
+        this.mID = id;
         this.mName = mName;
         this.mType = mType;
         this.mPrice = mPrice;
@@ -26,6 +31,31 @@ public class Meal implements Parcelable {
         this.mDescription = mDescription;
         this.mImage = mImage;
         this.mRating = rating;
+        mSpecs = new ArrayList<>();
+    }
+
+    public ArrayList<String> getmSpecs() {
+        return mSpecs;
+    }
+
+    public void setmSpecs(ArrayList<String> mSpecs) {
+        this.mSpecs = mSpecs;
+    }
+
+    public Integer getmResID() {
+        return mResID;
+    }
+
+    public void setmResID(Integer mResID) {
+        this.mResID = mResID;
+    }
+
+    public Integer getmID() {
+        return mID;
+    }
+
+    public void setmID(Integer mID) {
+        this.mID = mID;
     }
 
     public String getmName() {

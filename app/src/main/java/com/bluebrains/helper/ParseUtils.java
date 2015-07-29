@@ -39,11 +39,9 @@ public class ParseUtils {
         });
     }
 
-    public static void subscribeWithEmail(String email) {
+    public static void subscribeWithUniqueId(Integer unique_id) {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.getObjectId();
-        installation.put("email", email);
-
+        installation.put("unique_id", unique_id+"");
         installation.saveInBackground();
     }
 }

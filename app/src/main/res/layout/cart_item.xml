@@ -8,7 +8,7 @@
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
-    android:background="#fffef9ff">
+    android:background="@drawable/layout_rounded2">
 
     <ImageView android:id="@+id/thumbnail"
         android:scaleType="fitCenter"
@@ -75,7 +75,9 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp" />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -99,7 +101,9 @@
             android:layout_alignLeft="@+id/total_cart_price"
             android:layout_alignStart="@+id/total_cart_price"
             android:layout_alignRight="@+id/total_cart_price"
-            android:layout_alignEnd="@+id/total_cart_price" />
+            android:layout_alignEnd="@+id/total_cart_price"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +113,10 @@
             android:id="@+id/total_cart_price"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorPrimary"
+            android:textIsSelectable="false"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 

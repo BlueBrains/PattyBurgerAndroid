@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#ffc10d09</color>-->
-    <color name="colorPrimary">@color/btn_logut_bg</color>
+    <color name="colorPrimary">#ffc10d09</color>
+    <color name="layoutColorPrimary">#fffef9ff</color>
     <color name="colorPrimaryDark">#ff931b13</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
+    <color name="itemColorPrimary">#ffffebdf</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#FF80AB</color>
     <color name="tabsScrollColor">#8a140e</color>
-
+    <color name="input_order_details">#ffd6d8d9</color>
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>

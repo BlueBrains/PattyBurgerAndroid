@@ -41,7 +41,9 @@
             android:id="@+id/total_order_coast"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textSize="23sp"
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:layout_width="wrap_content"
@@ -53,7 +55,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@layout/rounded_button2"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="24sp" />
 
     </RelativeLayout>
 

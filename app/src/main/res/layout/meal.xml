@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:weightSum="1"
     android:id="@+id/meal"
     android:paddingBottom="3dp"
     android:paddingLeft="5dp"
-    android:paddingTop="2dp">
+    android:paddingTop="2dp"
+    android:background="@drawable/layout_rounded2">
 
     <ImageView android:id="@+id/thumbnail"
         android:scaleType="fitCenter"
@@ -17,17 +18,23 @@
         android:layout_below="@+id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
 
     <TextView android:id="@+id/name"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:layout_width="128dp"
         android:layout_gravity="left"
         android:maxLines="3"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignParentEnd="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:text="test"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
 
     <RelativeLayout
         android:orientation="vertical"
@@ -35,11 +42,10 @@
         android:layout_height="match_parent"
         android:id="@+id/meal_details"
         android:layout_toEndOf="@+id/thumbnail"
-        android:layout_alignBottom="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_below="@+id/name"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:layout_alignParentBottom="true">
 
         <RatingBar
             android:layout_width="wrap_content"
@@ -56,13 +62,20 @@
         <TextView android:id="@+id/description"
             android:layout_height="37dp"
             android:layout_width="187dp"
-            android:maxLines="6"
+            android:maxLines="5"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/body_ratingBar"
             android:layout_marginTop="5dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="12dp"
+            android:textColor="#bb000000"
+            android:text="test"
+            android:maxLength="50"
+            android:ellipsize="end"/>
 
     </RelativeLayout>
 

@@ -96,7 +96,7 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
                         FragmentMap fragment = new FragmentMap();
                         fragment.setArguments(args);
                         transaction.replace(R.id.container_body, fragment);
-                        transaction.addToBackStack(null);
+                        transaction.addToBackStack(FragmentMap.class.getSimpleName());
                         transaction.commit();
                         ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_restaurant_location);
                     }
@@ -116,7 +116,7 @@ public class BurgerRecyclerViewAdapter extends RecyclerView.Adapter<BurgerRecycl
                 FragmentRestaurantDetails fragment = new FragmentRestaurantDetails();
                 fragment.setArguments(args);
                 transaction.replace(R.id.container_body, fragment);
-                transaction.addToBackStack(null);
+                transaction.addToBackStack(FragmentRestaurantDetails.class.getSimpleName());
                 transaction.commit();
                 ((ActionBarActivity)mContext).getSupportActionBar().setTitle(R.string.title_restaurant_details);
             }

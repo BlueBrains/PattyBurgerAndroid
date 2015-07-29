@@ -1,14 +1,25 @@
 package com.bluebrains.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Molham on 5/17/2015.
  */
 public class CartItem extends Meal {
     private int mCount;
+    ArrayList<Integer> mSpecState;
 
     public CartItem(Meal meal){
-        super(meal.getmName(), meal.getmType(), meal.getmPrice(), meal.getmTime(), meal.getmDescription(), meal.getmImage(), meal.getmRating());
+        super(meal.getmID(),meal.getmName(), meal.getmType(), meal.getmPrice(), meal.getmTime(), meal.getmDescription(), meal.getmImage(), meal.getmRating());
         this.mCount = 1;
+    }
+
+    public ArrayList<Integer> getmSpecState() {
+        return mSpecState;
+    }
+
+    public void setmSpecState(ArrayList<Integer> mSpecState) {
+        this.mSpecState = mSpecState;
     }
 
     public int getmCount() {

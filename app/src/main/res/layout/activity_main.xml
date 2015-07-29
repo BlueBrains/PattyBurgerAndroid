@@ -46,7 +46,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
+    android:screenOrientation="portrait"
     android:layout_width="match_parent"
+    android:theme="@style/MyMaterialTheme"
     android:layout_height="match_parent">
 
 

@@ -18,11 +18,26 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
+import com.bluebrains.helper.SQLiteHandler;
+import com.bluebrains.helper.SessionManager;
 import com.bluebrains.pattyburger.R;
-import com.bluebrains.receiver.PusherReciver;
 
 
-public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener, FragmentDrawer.OnFragmentInteractionListener, FragmentRestaurants.OnFragmentInteractionListener, FragmentRestaurantTab.OnFragmentInteractionListener, FragmentMeal.OnFragmentInteractionListener, FragmentCart.OnFragmentInteractionListener, FragmentMap.OnFragmentInteractionListener, FragmentRestaurantDetails.OnFragmentInteractionListener{
+public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener,
+        FragmentDrawer.OnFragmentInteractionListener,
+        FragmentRestaurants.OnFragmentInteractionListener,
+        FragmentRestaurantTab.OnFragmentInteractionListener,
+        FragmentMeal.OnFragmentInteractionListener,
+        FragmentCart.OnFragmentInteractionListener,
+        FragmentMap.OnFragmentInteractionListener,
+        FragmentRestaurantDetails.OnFragmentInteractionListener,
+        FragmentRegistration.OnFragmentInteractionListener,
+        FragmentOrderDetails.OnFragmentInteractionListener,
+        FragmentSubmitOrder.OnFragmentInteractionListener,
+        FragmentWriteReview.OnFragmentInteractionListener,
+        FragmentReadReviews.OnFragmentInteractionListener
+        {
+
     private static String LOG_TAG = MainActivity.class.getName();
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
@@ -42,17 +57,27 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             @Override
             public void onBackStackChanged() {
                 Fragment f = getSupportFragmentManager().findFragmentById(R.id.container_body);
-                if (f != null){
-                    updateTitleAndDrawer (f);
+                if (f != null) {
+                    updateTitleAndDrawer(f);
                 }
-
             }
         });
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
-        displayView(0);
+        Intent intent = getIntent();
+        if(!intent.hasExtra("com.parse.Data"))
+            displayView(0);
+        else{
+            FragmentWriteReview fragment = FragmentWriteReview.newInstance(intent.getStringExtra("com.parse.Data"));
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.addToBackStack(FragmentWriteReview.class.getSimpleName());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(R.string.title_write_review);
+        }
     }
 
     @Override
@@ -74,7 +99,19 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                     .show();
         }
         else {
-            super.onBackPressed();
+            Fragment f = getSupportFragmentManager().findFragmentById(R.id.container_body);
+            if (f.getClass().getName().equals(FragmentOrderDetails.class.getName())) {
+                super.onBackPressed();
+//                getSupportFragmentManager().beginTransaction()
+//                        .remove(getSupportFragmentManager()
+//                                .findFragmentByTag(FragmentRegistration.class.getSimpleName()))
+//                        .add(getSupportFragmentManager().
+//                                findFragmentByTag(FragmentCart.class.getSimpleName()),
+//                                FragmentCart.class.getSimpleName())
+//                .commit();
+            }else{
+                super.onBackPressed();
+            }
         }
     }
 
@@ -94,13 +131,18 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startService(new Intent(this,PusherReciver.class));
+//            startService(new Intent(this,PusherReciver.class));
+            SQLiteHandler db;
+            db = new SQLiteHandler(getApplicationContext());
+            db.deleteUsers();
+            SessionManager session = new SessionManager(this);
+            session.logoutSession();
         }else if (id == R.id.action_cart) {
             FragmentCart fragment = new FragmentCart();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.addToBackStack(FragmentCart.class.getSimpleName());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle(R.string.title_cart_list);
         }
@@ -145,7 +187,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
             fragmentTransaction.commit();
 
             // set the toolbar title

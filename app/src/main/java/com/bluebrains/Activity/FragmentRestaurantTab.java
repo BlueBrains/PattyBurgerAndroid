@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluebrains.adapter.MealRecyclerViewAdapter;
+import com.bluebrains.helper.DividerItemDecoration;
 import com.bluebrains.pattyburger.GetMealJsonData;
 import com.bluebrains.pattyburger.R;
 
@@ -184,8 +186,12 @@ public class FragmentRestaurantTab extends Fragment {
                     container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
-            mRecyclerViews.add(position, (RecyclerView) view.findViewById(R.id.recycler_view));
-            mRecyclerViews.get(position).setLayoutManager(new LinearLayoutManager(getActivity()));
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            mRecyclerViews.add(position, recyclerView);
 
             ProccessMeals proccessMeals = new ProccessMeals(mRestaurantId, position + 1);
             proccessMeals.execute();

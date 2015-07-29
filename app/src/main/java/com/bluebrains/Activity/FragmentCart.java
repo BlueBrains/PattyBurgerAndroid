@@ -5,34 +5,22 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.bluebrains.adapter.CartRecyclerViewAdapter;
-import com.bluebrains.app.AppConfig;
 import com.bluebrains.app.Controller;
-import com.bluebrains.model.CartItem;
+import com.bluebrains.helper.DividerItemDecoration;
+import com.bluebrains.helper.SessionManager;
 import com.bluebrains.pattyburger.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +37,7 @@ public class FragmentCart extends Fragment {
     private TextView mTotalCoast;
     private Context mContext;
     private CartRecyclerViewAdapter mCartRecyclerViewAdapter;
+    private SessionManager mSession;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,67 +79,23 @@ public class FragmentCart extends Fragment {
         final Controller mController =(Controller) mContext;
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mSubmit = (Button) view.findViewById(R.id.cart_order_button);
         mTotalCoast = (TextView) view.findViewById(R.id.total_order_coast);
         mTotalCoast.append(" "+mController.getModelCart().getmTotalCoast()+"");
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mCartRecyclerViewAdapter = new CartRecyclerViewAdapter(getActivity(),mController.getModelCart().getCart());
         mRecyclerView.setAdapter(mCartRecyclerViewAdapter);
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<CartItem> cart = mController.getModelCart().getCart();
-                final String USER_ID = "user_id";
-                final String ORDER = "order";
-                final String ITEM_ID = "item_id";
-                final String ITEM_SPEC = "item_spec";
-                final String ITEM_COUNT = "item_count";
-                JSONArray meals = new JSONArray();
-                JSONObject order = new JSONObject();
-                try {
-                    for (CartItem item : cart) {
-                        JSONObject jsonItem = new JSONObject();
-                        jsonItem.put(ITEM_ID, 1);
-                        jsonItem.put(ITEM_SPEC, "spec");
-                        jsonItem.put(ITEM_COUNT, 12);
-
-                        meals.put(jsonItem);
-                    }
-                    order.put(USER_ID, 1).put(ORDER, meals);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                // Tag used to cancel the request
-                final String TAG_SUBMIT = "submit_cart";
-                Log.d(TAG_SUBMIT, order.toString());
-
-                JsonObjectRequest orderObj = new JsonObjectRequest(Request.Method.POST, AppConfig.ORDER_URL, order,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d(TAG_SUBMIT, response.toString());
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG_SUBMIT, "Error: " + error.getMessage());
-                        //Log.d(TAG_SUBMIT, order.toString());
-                    }
-                }) {
-                    /**
-                     * Passing some request headers
-                     * */
-                    @Override
-                    public Map<String, String> getHeaders() throws
-                            AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json");
-                        headers.put("charset", "utf-8");
-                        return headers;
-                    }
-                };
-                // Adding request to request queue
-                mController.getInstance().addToRequestQueue(orderObj, TAG_SUBMIT);
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentRegistration fragment = new FragmentRegistration();
+            transaction.replace(R.id.container_body, fragment).addToBackStack(null);
+            transaction.commit();
+            ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_registration);
             }
         });
 
@@ -163,6 +108,7 @@ public class FragmentCart extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mSession = new SessionManager(getActivity());
     }
 
     @Override
