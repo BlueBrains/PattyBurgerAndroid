@@ -179,7 +179,7 @@ public class FragmentRegistration extends Fragment {
                                 pref.createLoginSession(id);
                                 // Launch login activity
                                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                FragmentOrderDetails fragment = new FragmentOrderDetails(); //TODO create fragment order detials
+                                FragmentOrderDetails fragment = new FragmentOrderDetails();
                                 transaction.replace(R.id.container_body, fragment);
                                 transaction.addToBackStack(null);
                                 transaction.commit();
@@ -201,9 +201,9 @@ public class FragmentRegistration extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                VolleyLog.d(TAG, "Error: " + (error.getMessage()!= null ? error.getMessage():"Connection error"));
                 Toast.makeText(mContext,
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        error.getMessage()!= null ? error.getMessage():"Connection error", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }) {

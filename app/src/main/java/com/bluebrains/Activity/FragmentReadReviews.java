@@ -163,7 +163,7 @@ public class FragmentReadReviews extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 Toast.makeText(mContext,
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        error.getMessage()!= null ? error.getMessage():"Connection error", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

@@ -91,11 +91,20 @@ public class FragmentCart extends Fragment {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            FragmentRegistration fragment = new FragmentRegistration();
-            transaction.replace(R.id.container_body, fragment).addToBackStack(null);
-            transaction.commit();
-            ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_registration);
+                if(mSession.isResgisterd()){
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    FragmentOrderDetails fragment = new FragmentOrderDetails();
+                    transaction.replace(R.id.container_body, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_order_details);
+                }else{
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    FragmentRegistration fragment = new FragmentRegistration();
+                    transaction.replace(R.id.container_body, fragment).addToBackStack(null);
+                    transaction.commit();
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_registration);
+                }
             }
         });
 
