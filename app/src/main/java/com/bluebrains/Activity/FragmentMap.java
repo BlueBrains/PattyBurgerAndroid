@@ -45,14 +45,14 @@ public class FragmentMap extends Fragment implements GoogleMap.OnMarkerClickList
 */
         currentLatLng=new LatLng(lat,lng);
         googleMap = fm.getMap();
-        /**
+
         if(googleMap!=null)
         {
             Toast.makeText(getActivity().getApplicationContext(),"map not null",Toast.LENGTH_LONG).show();
         }
         else
             Toast.makeText(getActivity().getApplicationContext(),"map is null",Toast.LENGTH_LONG).show();
-**/
+
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         //currentLatLng=new LatLng(33.509032, 36.286178);
         marker = googleMap.addMarker(new MarkerOptions()

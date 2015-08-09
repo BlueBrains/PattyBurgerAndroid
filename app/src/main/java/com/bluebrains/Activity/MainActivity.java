@@ -4,20 +4,31 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsoluteLayout;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.Toast;
 
 import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
+import com.bluebrains.common.logger.Log;
 import com.bluebrains.helper.SQLiteHandler;
 import com.bluebrains.helper.SessionManager;
 import com.bluebrains.pattyburger.R;
@@ -35,7 +46,9 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         FragmentOrderDetails.OnFragmentInteractionListener,
         FragmentSubmitOrder.OnFragmentInteractionListener,
         FragmentWriteReview.OnFragmentInteractionListener,
-        FragmentReadReviews.OnFragmentInteractionListener
+        FragmentReadReviews.OnFragmentInteractionListener,
+        FragmentNear.OnFragmentInteractionListener,FragmentRestaurantsarch.OnFragmentInteractionListener,
+        AdapterView.OnItemSelectedListener
         {
 
     private static String LOG_TAG = MainActivity.class.getName();
@@ -44,6 +57,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     private ProgressDialog pDialog;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    private int type=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +135,24 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+
+        switch (position) {
+            case 0:
+                type=0;
+                // Whatever you want to happen when the first item gets selected
+                break;
+            case 1:
+                type=1;
+                // Whatever you want to happen when the second item gets selected
+                break;
+
+        }
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -145,6 +177,74 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             fragmentTransaction.addToBackStack(FragmentCart.class.getSimpleName());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle(R.string.title_cart_list);
+        }else if(id == R.id.action_near) {
+            FragmentActivity activity = this;
+            FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+            FragmentNear fragment = new FragmentNear();
+            transaction.replace(R.id.container_body, fragment);
+            transaction.addToBackStack(FragmentMap.class.getSimpleName());
+            transaction.commit();
+            this.getSupportActionBar().setTitle(R.string.title_restaurant_location);
+        }
+        else if(id == R.id.action_search_res) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+
+            alert.setMessage("Search For Restaurants");
+            alert.setTitle("Search");
+
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View dialogview = inflater.inflate(R.layout.dialoglayout, null);
+            final EditText edittext= (EditText)dialogview.findViewById(R.id.edittext);//new EditText(this);
+            Spinner spinner;
+            String[]paths = {"Restaurant name", "Restaurant address"};
+            spinner = (Spinner)dialogview.findViewById(R.id.spinner1);
+            ArrayAdapter<String>adapter = new ArrayAdapter<String>(MainActivity.this,
+                    android.R.layout.simple_spinner_item,paths);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+            alert.setView(dialogview);
+
+            alert.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //What ever you want to do with the value
+
+                    String YouEditTextValue = edittext.getText().toString();
+                   // Toast.makeText(getApplication(),YouEditTextValue+" amer",Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(getApplication(),"type= "+type,Toast.LENGTH_LONG).show();
+
+// set Fragmentclass Arguments
+                    Fragment fragment = new FragmentRestaurantsarch();
+                    if (fragment != null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("param1", YouEditTextValue);
+                        bundle.putInt("param2", type);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragment.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.container_body, fragment);
+                        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+                        fragmentTransaction.commit();
+
+                        // set the toolbar title
+                        getSupportActionBar().setTitle("search");
+                    }
+
+
+                }
+            });
+
+            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    // what ever you want to do with No option.
+                }
+            });
+
+            alert.show();
         }
 
         return super.onOptionsItemSelected(item);
