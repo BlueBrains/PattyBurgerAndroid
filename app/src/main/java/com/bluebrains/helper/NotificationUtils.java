@@ -73,10 +73,39 @@ public class NotificationUtils {
             NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(mNotificationId, notification);
         } else {
-            intent.putExtra("title", title);
-            intent.putExtra("message", message);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.startActivity(intent);
+            int icon = R.drawable.ic_launcher;
+
+            int mNotificationId = AppConfig.NOTIFICATION_ID;
+            PendingIntent resultPendingIntent =
+                    PendingIntent.getActivity(
+                            mContext,
+                            0,
+                            intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                    );
+
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                    mContext);
+            Notification notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
+                    .setAutoCancel(true)
+                    .setContentTitle(title)
+                    .setStyle(inboxStyle)
+                    .setLights(Color.GREEN, 3000, 3000)
+                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                    .setContentIntent(resultPendingIntent)
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
+                    .setContentText(message)
+                    .build();
+
+            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(mNotificationId, notification);
+//            intent.putExtra("title", title);
+//            intent.putExtra("message", message);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            mContext.startActivity(intent);
         }
     }
 

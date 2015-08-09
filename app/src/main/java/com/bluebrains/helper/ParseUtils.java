@@ -13,6 +13,8 @@ import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
+import java.util.List;
+
 /**
  * Created by Molham on 7/7/2015.
  */
@@ -43,5 +45,32 @@ public class ParseUtils {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
         installation.put("unique_id", unique_id+"");
         installation.saveInBackground();
+    }
+    public static boolean IsSubscribedTo(String res_name) {
+        List<Object> channels = getSubscribedList();
+        for(int i = 0; i<channels.size(); i++){
+            if(channels.get(i).toString().equals(res_name))
+                return true;
+        }
+        return false;
+    }
+    public static List<Object> getSubscribedList() {
+        return ParseInstallation.getCurrentInstallation().getList("channels");
+    }
+    public static void subscribeWithRes(final String res_name) {
+        ParsePush.subscribeInBackground(res_name, new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Log.e(TAG, "Successfully subscribed to " + res_name);
+            }
+        });
+    }
+    public static void unSubscribeWithRes(final String res_name) {
+        ParsePush.unsubscribeInBackground(res_name, new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Log.e(TAG, "Successfully subscribed to " + res_name);
+            }
+        });
     }
 }

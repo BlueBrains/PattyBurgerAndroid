@@ -137,9 +137,8 @@ public class FragmentMeal extends Fragment {
 
         LinearLayout checkboxes = (LinearLayout)view.findViewById(R.id.checkboxes);
         specs = mCurrentMeal.getmSpecs();
-        specs.add("More Salt");
-        specs.add("Chess Over It!");
-        specs.add("Tomato!");
+        specs.add("ملح زيادة");
+        specs.add("مع توابل ");
         checkBoxesMap = new ArrayList<>();
         int Array_Count = specs.size();
         for (int i = 0; i < Array_Count; i++)
@@ -155,7 +154,7 @@ public class FragmentMeal extends Fragment {
                 }
             });
             checkBox.setId(i);
-            checkBox.setText(specs.get(i)+i);
+            checkBox.setText(specs.get(i));
             row.addView(checkBox);
             checkboxes.addView(row,i);
         }
@@ -221,8 +220,9 @@ public class FragmentMeal extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+
                 Toast.makeText(mContext,
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        error.getMessage()!= null ? error.getMessage():"Connection error", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

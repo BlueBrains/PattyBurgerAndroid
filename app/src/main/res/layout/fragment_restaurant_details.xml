@@ -48,7 +48,7 @@
                 android:text="Show Menu"
                 android:textAllCaps="false"
                 android:id="@+id/show_menu"
-                android:background="#ff0da129"
+                android:background="@layout/rounded_button4"
                 android:textColor="@color/bright_foreground_inverse_material_light"
                 android:layout_marginBottom="32dp"
                 android:layout_alignParentBottom="true"
@@ -70,7 +70,7 @@
     <RelativeLayout
         android:id="@+id/body"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_gravity="left|center_vertical"
         android:layout_below="@+id/header">
 
@@ -111,15 +111,25 @@
             android:layout_toStartOf="@+id/read_reviews_arrow" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/read_reviews_arrow"
-            android:background="@drawable/abc_ic_go_search_api_mtrl_alpha"
-            android:layout_alignBottom="@+id/read_reviews"
+            android:background="@drawable/ic_reviews"
+            android:clickable="true"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:clickable="true" />
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:text="follow"
+            android:id="@+id/follow_res"
+            android:background="@layout/rounded_button4"
+            android:textColor="@color/textColorPrimary"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/Ratings"
+            android:layout_alignStart="@+id/Ratings" />
     </RelativeLayout>
 
     <RelativeLayout

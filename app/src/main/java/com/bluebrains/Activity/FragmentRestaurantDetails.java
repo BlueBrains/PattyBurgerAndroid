@@ -26,6 +26,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bluebrains.app.AppConfig;
 import com.bluebrains.app.Controller;
+import com.bluebrains.helper.ParseUtils;
 import com.bluebrains.model.Restaurant;
 import com.bluebrains.pattyburger.R;
 import com.squareup.picasso.Picasso;
@@ -49,6 +50,7 @@ public class FragmentRestaurantDetails extends Fragment {
     private static final String TAG = FragmentRestaurantDetails.class.getSimpleName();
     private Restaurant mRes;
     private Button mMenu;
+    private Button mFollow;
     private TextView mRestaurantName;
     private TextView mLocation;
     private TextView mPhone;
@@ -90,6 +92,7 @@ public class FragmentRestaurantDetails extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mMenu = (Button) view.findViewById(R.id.show_menu);
+        mFollow = (Button) view.findViewById(R.id.follow_res);
         mRestaurantName = (TextView) view.findViewById(R.id.res_name);
         mLocation = (TextView) view.findViewById(R.id.location_text);
         mPhone = (TextView) view.findViewById(R.id.phone_text);
@@ -115,6 +118,23 @@ public class FragmentRestaurantDetails extends Fragment {
                 transaction.addToBackStack(FragmentRestaurantTab.class.getSimpleName());
                 transaction.commit();
                 getActivity().setTitle(R.string.title_restaurant_menu);
+            }
+        });
+        if(ParseUtils.IsSubscribedTo(mRes.getmName())){
+            mFollow.setText("Un Follow");
+        }
+        mFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ParseUtils.IsSubscribedTo(mRes.getmName())){
+                    ParseUtils.unSubscribeWithRes(mRes.getmName());
+                    mFollow.setText("Follow");
+                    Toast.makeText(mContext,"following Canceled for "+mRes.getmName(),Toast.LENGTH_LONG).show();
+                }else{
+                    ParseUtils.subscribeWithRes(mRes.getmName());
+                    mFollow.setText("Un Follow");
+                    Toast.makeText(mContext,"Now your are a follower for "+mRes.getmName(),Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -250,7 +270,7 @@ public class FragmentRestaurantDetails extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getActivity().getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                        error.getMessage()!= null ? error.getMessage():"Connection error", Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
                 hidepDialog();
             }
