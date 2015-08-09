@@ -99,7 +99,7 @@
                 android:id="@+id/checkboxes"
                 android:layout_marginBottom="12dp"
                 android:layout_below="@+id/mealDescription"
-                android:layout_alignLeft="@+id/mealPrice"></LinearLayout>
+                android:layout_alignLeft="@+id/mealPrice"/>
         </RelativeLayout>
 
     </RelativeLayout>

@@ -68,6 +68,12 @@ public class FragmentMeal extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(FragmentRestaurantTab.Item,mCurrentMeal);
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -98,7 +104,11 @@ public class FragmentMeal extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mContext = getActivity().getApplicationContext();
-        mCurrentMeal = (Meal) getArguments().getParcelable(FragmentRestaurantTab.Item);//getParcelableExtra(RestaurantTab.Item);
+        if(savedInstanceState != null){
+            mCurrentMeal = (Meal) savedInstanceState.getParcelable(FragmentRestaurantTab.Item);//getParcelableExtra(RestaurantTab.Item);
+        }else{
+            mCurrentMeal = (Meal) getArguments().getParcelable(FragmentRestaurantTab.Item);//getParcelableExtra(RestaurantTab.Item);
+        }
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
     }

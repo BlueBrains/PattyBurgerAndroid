@@ -186,7 +186,7 @@ public class FragmentRestaurantTab extends Fragment {
                     container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_res_tab);
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

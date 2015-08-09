@@ -78,7 +78,7 @@ public class FragmentCart extends Fragment {
         mContext = getActivity().getApplicationContext();
         final Controller mController =(Controller) mContext;
 
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_cart);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -98,10 +98,11 @@ public class FragmentCart extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_order_details);
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_order_details);
                 }else{
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     FragmentRegistration fragment = new FragmentRegistration();
-                    transaction.replace(R.id.container_body, fragment).addToBackStack(null);
+                    transaction.replace(R.id.container_body, fragment).addToBackStack(FragmentRegistration.class.getSimpleName());
                     transaction.commit();
                     ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_registration);
                 }
