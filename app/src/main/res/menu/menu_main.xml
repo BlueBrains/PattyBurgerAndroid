@@ -9,7 +9,10 @@
     <item android:id="@+id/action_search" android:title="@string/action_search"
         android:orderInCategory="100"
         android:icon="@drawable/ic_search_2"/>
-    <item android:id="@+id/action_search" android:title="@string/action_my_location"
+    <item android:id="@+id/action_near" android:title="@string/action_my_location"
         android:orderInCategory="100" app:showAsAction="always"
         android:icon="@drawable/ic_map_3"/>
+    <item android:id="@+id/action_search_res" android:title="action_my_search"
+        android:orderInCategory="100" app:showAsAction="always"
+        android:icon="@drawable/ic_search_res"/>
 </menu>

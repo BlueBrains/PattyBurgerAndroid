@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 
 import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
 import com.bluebrains.helper.DividerItemDecoration;
+import com.bluebrains.model.Restaurant;
 import com.bluebrains.pattyburger.GetResJsonData;
 import com.bluebrains.pattyburger.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +38,7 @@ public class FragmentRestaurants extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static List<Restaurant> SRestaurant;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,7 +87,7 @@ public class FragmentRestaurants extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_res);
+        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -156,6 +160,7 @@ public class FragmentRestaurants extends Fragment {
                 super.onPostExecute(webData);
                 if (pDialog.isShowing())
                     pDialog.dismiss();
+                SRestaurant =getmRestaurants();
                 burgerRecyclerViewAdapter =
                         new BurgerRecyclerViewAdapter(getActivity(),getmRestaurants());
                 mRecyclerView.setAdapter(burgerRecyclerViewAdapter);
@@ -165,3 +170,4 @@ public class FragmentRestaurants extends Fragment {
         }
     }
 }
+

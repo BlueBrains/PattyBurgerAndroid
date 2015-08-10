@@ -26,7 +26,11 @@ public class GetResJsonData extends GetRowData{
         createAndroidUpdateUri();
         mRestaurants = new ArrayList<Restaurant>();
     }
-
+    public GetResJsonData(String res_search){
+        super(null,GET);
+        createAndroidUpdateSearchUri();
+        mRestaurants = new ArrayList<Restaurant>();
+    }
     public void execute (){
         super.setmRowUrl(mDestinationUri.toString());
         DownloadJsonData downloadJsonData = new DownloadJsonData();
@@ -36,6 +40,10 @@ public class GetResJsonData extends GetRowData{
     }
     public boolean createAndroidUpdateUri(){
         mDestinationUri = Uri.parse(AppConfig.BASE_URL+"restaurants/ress");
+        return mDestinationUri != null;
+    }
+    public boolean createAndroidUpdateSearchUri(){
+        mDestinationUri = Uri.parse(AppConfig.BASE_URL+"restaurants/search");
         return mDestinationUri != null;
     }
 
