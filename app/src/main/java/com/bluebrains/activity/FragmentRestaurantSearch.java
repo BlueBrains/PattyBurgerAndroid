@@ -38,12 +38,12 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentRestaurantsarch.OnFragmentInteractionListener} interface
+ * {@link FragmentRestaurantSearch.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentRestaurantsarch#newInstance} factory method to
+ * Use the {@link FragmentRestaurantSearch#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRestaurantsarch extends Fragment {
+public class FragmentRestaurantSearch extends Fragment {
 
     private RecyclerView mRecyclerView;
     private BurgerRecyclerViewAdapter burgerRecyclerViewAdapter;
@@ -70,8 +70,8 @@ public class FragmentRestaurantsarch extends Fragment {
      * @return A new instance of fragment Restaurants.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentRestaurantsarch newInstance(String param1, String param2) {
-        FragmentRestaurantsarch fragment = new FragmentRestaurantsarch();
+    public static FragmentRestaurantSearch newInstance(String param1, String param2) {
+        FragmentRestaurantSearch fragment = new FragmentRestaurantSearch();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,7 +79,7 @@ public class FragmentRestaurantsarch extends Fragment {
         return fragment;
     }
 
-    public FragmentRestaurantsarch() {
+    public FragmentRestaurantSearch() {
         // Required empty public constructor
     }
 
@@ -103,7 +103,7 @@ public class FragmentRestaurantsarch extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_res);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,16 +18,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import com.bluebrains.adapter.BurgerRecyclerViewAdapter;
-import com.bluebrains.common.logger.Log;
 import com.bluebrains.helper.SQLiteHandler;
 import com.bluebrains.helper.SessionManager;
 import com.bluebrains.pattyburger.R;
@@ -48,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         FragmentWriteReview.OnFragmentInteractionListener,
         FragmentReadReviews.OnFragmentInteractionListener,
         FragmentNear.OnFragmentInteractionListener,
-        FragmentRestaurantsarch.OnFragmentInteractionListener,
+        FragmentRestaurantSearch.OnFragmentInteractionListener,
         AdapterView.OnItemSelectedListener
         {
 
@@ -218,7 +213,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                   //  Toast.makeText(getApplication(),"type= "+type,Toast.LENGTH_LONG).show();
 
 // set Fragmentclass Arguments
-                    Fragment fragment = new FragmentRestaurantsarch();
+                    Fragment fragment = new FragmentRestaurantSearch();
                     if (fragment != null) {
                         Bundle bundle = new Bundle();
                         bundle.putString("param1", YouEditTextValue);
