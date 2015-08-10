@@ -1,4 +1,4 @@
-package com.bluebrains.Activity;
+package com.bluebrains.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

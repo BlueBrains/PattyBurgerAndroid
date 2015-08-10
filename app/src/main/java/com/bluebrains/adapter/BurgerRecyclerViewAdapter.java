@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bluebrains.Activity.FragmentMap;
-import com.bluebrains.Activity.FragmentRestaurantDetails;
+import com.bluebrains.activity.FragmentMap;
+import com.bluebrains.activity.FragmentRestaurantDetails;
 import com.bluebrains.model.Restaurant;
 import com.bluebrains.pattyburger.R;
 import com.squareup.picasso.Picasso;

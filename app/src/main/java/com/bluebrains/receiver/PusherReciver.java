@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.bluebrains.Activity.MainActivity;
+import com.bluebrains.activity.MainActivity;
 import com.bluebrains.helper.NotificationUtils;
 import com.pusher.client.Pusher;
 import com.pusher.client.channel.Channel;

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    tools:context="com.bluebrains.Activity.MealDescription"
+    tools:context="com.bluebrains.activity.MealDescription"
     android:layout_height="fill_parent">
     <RelativeLayout
         android:layout_width="match_parent"

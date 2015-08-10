@@ -39,7 +39,7 @@
         android:label="@string/app_name"
         android:theme="@style/MyMaterialTheme" >
         <activity
-            android:name="com.bluebrains.Activity.MainActivity"
+            android:name="com.bluebrains.activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
 
@@ -93,7 +93,7 @@
             android:name="com.bluebrains.receiver.PusherReciver"
             android:exported="false"/>
         <activity
-            android:name="com.bluebrains.Activity.LandingActivity"
+            android:name="com.bluebrains.activity.LandingActivity"
             android:label="@string/title_activity_landing" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

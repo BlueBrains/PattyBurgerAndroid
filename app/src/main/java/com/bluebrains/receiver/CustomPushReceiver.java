@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.bluebrains.Activity.MainActivity;
+import com.bluebrains.activity.MainActivity;
 import com.bluebrains.helper.NotificationUtils;
 import com.parse.ParsePushBroadcastReceiver;
 

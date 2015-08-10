@@ -1,4 +1,4 @@
-package com.bluebrains.Activity;
+package com.bluebrains.activity;
 
 
 import android.app.Activity;
@@ -191,6 +191,11 @@ public class FragmentDrawer extends Fragment {
 
         private GestureDetector gestureDetector;
         private ClickListener clickListener;
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean b) {
+
+        }
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
             this.clickListener = clickListener;

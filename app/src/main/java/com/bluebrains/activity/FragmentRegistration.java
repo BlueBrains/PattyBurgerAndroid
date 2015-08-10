@@ -1,4 +1,4 @@
-package com.bluebrains.Activity;
+package com.bluebrains.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -153,6 +153,7 @@ public class FragmentRegistration extends Fragment {
         params.put("name", name);
         params.put("phone", phone);
         JSONObject json = new JSONObject(params);
+        Log.d(TAG, json.toString());
         JsonObjectRequest strReq = new JsonObjectRequest(Request.Method.POST, AppConfig.URL_REGISTER, json,
                 new Response.Listener<JSONObject>() {
                     @Override
